@@ -176,7 +176,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 		}
 		System.out.println("before insert");
-		descRepo.saveAll(descList);
+		// descRepo.saveAll(descList);
 		System.out.println("after insert");
 
 	}
