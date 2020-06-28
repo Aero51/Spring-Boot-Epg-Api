@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aero51.springbootepdapi.db.OneRowChannelListRepository;
+import com.aero51.springbootepdapi.db.OutputChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
 import com.aero51.springbootepdapi.model.output.OutputChannel;
 import com.aero51.springbootepdapi.model.output.OutputProgram;
@@ -25,7 +25,7 @@ public class EpgRestController {
 	// @Autowired
 	// private DescRepository descRepo;
 	@Autowired
-	private OneRowChannelListRepository channelsRepo;
+	private OutputChannelListRepository channelsRepo;
 	@Autowired
 	private ProgramRepository programRepo;
 	@Autowired

@@ -1,4 +1,4 @@
-package com.aero51.springbootepdapi;
+package com.aero51.springbootepdapi.retrofit;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,20 +15,21 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 
 public class RetrofitInstance {
 
-	private static Retrofit retrofit = null;
-	private static final String BASE_URL = "https://epg.phoenixrebornbuild.com.hr/";
+	private static Retrofit epdRetrofit = null;
+	private static Retrofit pubProxyRetrofit = null;
+	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr/";
+	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 
-	public static synchronized TheMovieDbApi getApiService() {
-		if (retrofit == null) {
+	public static synchronized RetrofitApi getEpdApi(String proxyHost, int proxyPort) {
+		if (epdRetrofit == null) {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-			String proxyHost = "186.233.104.164";
-			int proxyPort = 8080;
 
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 
@@ -50,16 +51,31 @@ public class RetrofitInstance {
 							headersBuilder.set("Authorization", credential);
 
 							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
-//.header("Connection", "close")
+							// .header("Connection", "close")
 							return res.newBuilder().header("Content-Encoding", "gzip")
 									.header("Content-Type", "application/xml").build();
 						}
 					}).build();
-			retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(JaxbConverterFactory.create())
+			epdRetrofit = new Retrofit.Builder().baseUrl(EPG_URL).addConverterFactory(JaxbConverterFactory.create())
 					.client(okHttpClient).build();
 
 		}
-		return retrofit.create(TheMovieDbApi.class);
+		return epdRetrofit.create(RetrofitApi.class);
+	}
+
+	public static synchronized RetrofitApi getpubProxyApi() {
+		if (pubProxyRetrofit == null) {
+
+			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
+//.addInterceptor(loggingInterceptor)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+			pubProxyRetrofit = new Retrofit.Builder().baseUrl(PUB_PROXY_URL)
+					.addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build();
+
+		}
+		return pubProxyRetrofit.create(RetrofitApi.class);
 	}
 
 	private static final Interceptor REWRITE_CONTENT_LENGTH_INTERCEPTOR = new Interceptor() {

@@ -10,14 +10,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.aero51.springbootepdapi.db.OneRowChannelListRepository;
+import com.aero51.springbootepdapi.db.OutputChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
+import com.aero51.springbootepdapi.db.PubProxyDataRepository;
 import com.aero51.springbootepdapi.model.input.Category;
 import com.aero51.springbootepdapi.model.input.Channel;
 import com.aero51.springbootepdapi.model.input.Programme;
 import com.aero51.springbootepdapi.model.input.Tv;
 import com.aero51.springbootepdapi.model.output.OutputChannel;
 import com.aero51.springbootepdapi.model.output.OutputProgram;
+import com.aero51.springbootepdapi.model.pubproxy.Data;
+import com.aero51.springbootepdapi.model.pubproxy.PubProxyResponseModel;
+import com.aero51.springbootepdapi.retrofit.RetrofitApi;
+import com.aero51.springbootepdapi.retrofit.RetrofitInstance;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,39 +36,94 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	// @Autowired
 	// private DescRepository descRepo;
 	@Autowired
-	private OneRowChannelListRepository channelsRepo;
+	private OutputChannelListRepository channelsRepo;
 	@Autowired
 	private ProgramRepository programRepo;
 	@Autowired
+	private PubProxyDataRepository pubProxyRepo;
+	@Autowired
 	private DownloadEpgService service;
+
+	private Integer failcount = 0;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("InitialLoad");
 		// Thread.sleep(5000);
-		initiateDownload();
+		initiateEpgDownload();
 		System.out.println("InitialLoad complete");
 	}
 
-	private void initiateDownload() {
-		TheMovieDbApi api = RetrofitInstance.getApiService();
-		Call<Tv> call = api.getEpg();
+	private void initiateEpgDownload() {
+		String proxyHost = "186.233.104.164";
+		Integer proxyPort = 8080;
+		List<Data> dataList = new ArrayList<Data>();
+		pubProxyRepo.findAll().forEach(dataList::add);
+		if (dataList.size() > 0) {
+			Data data = dataList.get(0);
+			proxyHost = data.getIp();
+			proxyPort = data.getPort();
+		}
+
+		RetrofitApi epdRetrofitApi = RetrofitInstance.getEpdApi(proxyHost, proxyPort);
+		Call<Tv> call = epdRetrofitApi.getEpg();
+
 		call.enqueue(new Callback<Tv>() {
 			@Override
 			public void onResponse(Call<Tv> call, Response<Tv> response) {
-
-				System.out.println("Response ok: " + response.code() + " ,:" + response.body().getProgramme().size());
-				saveTodb(response);
+				if (!response.isSuccessful()) {
+					System.out
+							.println("epd Tv Response not ok: " + response.code() + " ,message:" + response.message());
+				} else {
+					System.out.println(
+							"epd Tv Response ok: " + response.code() + " ,:" + response.body().getProgramme().size());
+					saveTodb(response);
+				}
 
 			}
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println(t.getMessage());
+				System.out.println("epd Throwable: " + t.getMessage());
+				System.out.println("epd stack trace: " + t.getStackTrace().toString());
+				failcount++;
+				if (failcount < 51) {
+					fetchNewPubProxy();
+				}
 			}
 		});
 
+	}
+
+	private void fetchNewPubProxy() {
+		RetrofitApi pubProxyRetrofitApi = RetrofitInstance.getpubProxyApi();
+		Call<PubProxyResponseModel> call = pubProxyRetrofitApi.getPubProxy();
+		call.enqueue(new Callback<PubProxyResponseModel>() {
+
+			@Override
+			public void onResponse(Call<PubProxyResponseModel> call, Response<PubProxyResponseModel> response) {
+				if (!response.isSuccessful()) {
+					System.out.println(
+							"PubProxy  Response not ok: " + response.code() + " ,message:" + response.message());
+				} else {
+					System.out.println(
+							"PubProxy Response ok: " + response.code() + " ,size :" + response.body().getData().size());
+					pubProxyRepo.deleteAll();
+					Data data = response.body().getData().get(0);
+					pubProxyRepo.save(data);
+					initiateEpgDownload();
+				}
+
+			}
+
+			@Override
+			public void onFailure(Call<PubProxyResponseModel> call, Throwable t) {
+				// TODO Auto-generated method stub
+				System.out.println("PubProxy Throwable: " + t.getMessage());
+				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
+			}
+		});
 	}
 
 	private void saveTodb(Response<Tv> response) {
@@ -197,8 +257,10 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("TRAVELCHANNEL") && !channel.equals("INVESTIGATIONDISCOVERY")
 				&& !channel.equals("DAVINCILEARNING") && !channel.equals("COMEDYCENTRALEXTRA")
 				&& !channel.equals("PINKFOLK") && !channel.equals("GRANDNARODNATV") && !channel.equals("PINKSUPERKIDS")
-				&& !channel.equals("DISNEYCHANNEL");
+				&& !channel.equals("DISNEYCHANNEL") && !channel.equals("BOSNATV1") && !channel.equals("BOXNATION")
+				&& !channel.equals("BTSPORT1") && !channel.equals("BTSPORT2");
 
+		// BOSNATV1,BOXNATION,BTSPORT1,BTSPORT2 uopce nema programa
 		// ALJAZEERA, KITCHENTV,EENTERTAINMENT,ARENASPORT1,ARENASPORT2,ARENASPORT3 imaju
 		// programe stare 20 dana 24KITCHEN
 		// ARENASPORT1,ARENASPORT2,ARENASPORT3,ARENASPORT4,ARENASPORT5,ARENASPORT1BH,NOVASPORT,
