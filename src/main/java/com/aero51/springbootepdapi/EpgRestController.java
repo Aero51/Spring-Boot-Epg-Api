@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aero51.springbootepdapi.db.OneRowChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
-import com.aero51.springbootepdapi.model.output.OneRowChannel;
+import com.aero51.springbootepdapi.model.output.OutputChannel;
 import com.aero51.springbootepdapi.model.output.OutputProgram;
 
 @RestController
@@ -60,10 +60,10 @@ public class EpgRestController {
 	 * channelsRepo.findAll().forEach(channelList::add); return descList; }
 	 */
 	@RequestMapping(value = "/channels", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OneRowChannel getChannel() {
-		List<OneRowChannel> channelsList = new ArrayList<OneRowChannel>();
+	public List<OutputChannel> getChannels() {
+		List<OutputChannel> channelsList = new ArrayList<OutputChannel>();
 		channelsRepo.findAll().forEach(channelsList::add);
-		return channelsList.get(0);
+		return channelsList;
 	}
 
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
