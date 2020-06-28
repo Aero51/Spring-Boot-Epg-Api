@@ -163,9 +163,3 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 }
-/*
- * </programme><programme start="20200605080000 +0200"
- * stop="20200605090000 +0200" channel="FACETV"> <title lang="hr">Muzièki
- * program</title> <desc lang="hr">¤ Category: Glazba. </desc> <desc lang="hr"/>
- * </programme>
- */
