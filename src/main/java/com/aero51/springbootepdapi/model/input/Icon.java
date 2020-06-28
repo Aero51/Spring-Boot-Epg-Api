@@ -6,7 +6,7 @@
 //
 
 
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.input;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

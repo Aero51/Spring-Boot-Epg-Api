@@ -5,7 +5,7 @@
 // Generated on: 2020.06.24 at 11:07:57 PM CEST 
 //
 
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.input;
 
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -10,13 +10,14 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.aero51.springbootepdapi.db.ChannelRepository;
+import com.aero51.springbootepdapi.db.OneRowChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
-import com.aero51.springbootepdapi.model.Category;
-import com.aero51.springbootepdapi.model.Channel;
-import com.aero51.springbootepdapi.model.Program;
-import com.aero51.springbootepdapi.model.Programme;
-import com.aero51.springbootepdapi.model.Tv;
+import com.aero51.springbootepdapi.model.input.Category;
+import com.aero51.springbootepdapi.model.input.Channel;
+import com.aero51.springbootepdapi.model.input.Programme;
+import com.aero51.springbootepdapi.model.input.Tv;
+import com.aero51.springbootepdapi.model.output.OneRowChannel;
+import com.aero51.springbootepdapi.model.output.OutputProgram;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,7 +31,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	// @Autowired
 	// private DescRepository descRepo;
 	@Autowired
-	private ChannelRepository channelsRepo;
+	private OneRowChannelListRepository channelsRepo;
 	@Autowired
 	private ProgramRepository programRepo;
 	@Autowired
@@ -77,22 +78,44 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	private void saveTodb(Response<Tv> response) {
 
-//		@JsonInclude()
-//		@Transient
 		Tv tv = response.body();
 		List<Channel> channelList = tv.getChannel();
+
+		List<String> idList = new ArrayList<String>();
+		List<String> displayNameList = new ArrayList<String>();
+		List<String> combinedList = new ArrayList<String>();
 		for (Channel channel : channelList) {
 			channel.setDisplay_name(channel.getDisplayName().getContent());
-
+			idList.add(channel.getId());
+			displayNameList.add(channel.getDisplay_name());
+			combinedList.add(channel.getId() + ":" + channel.getDisplay_name());
 		}
-		channelsRepo.saveAll(channelList);
+
+		ObjectMapper newgson = new ObjectMapper();
+		try {
+			String idjson = newgson.writeValueAsString(idList);
+			String displayNamejson = newgson.writeValueAsString(displayNameList);
+			String combinedjson = newgson.writeValueAsString(combinedList);
+			OneRowChannel oneRowChannel = new OneRowChannel();
+			oneRowChannel.setId(idjson);
+			oneRowChannel.setDisplay_name(displayNamejson);
+			oneRowChannel.setCombined(combinedjson);
+			channelsRepo.deleteAll();
+			channelsRepo.save(oneRowChannel);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// channelsRepo.deleteAll();
+		// channelsRepo.saveAll(channelList);
 
 		List<Programme> programmeList = tv.getProgramme();
 
-		List<Program> programList = new ArrayList<Program>();
+		List<OutputProgram> programList = new ArrayList<OutputProgram>();
 		for (Programme programme : programmeList) {
 
-			Program program = new Program();
+			OutputProgram program = new OutputProgram();
 			program.setChannel(programme.getChannel());
 			program.setTitle(programme.getTitle().getContent());
 			program.setStart(programme.getStart());
@@ -155,9 +178,10 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			programList.add(program);
 		}
+		System.out.println("before insert");
+		programRepo.deleteAll();
 		programRepo.saveAll(programList);
 
-		System.out.println("before insert");
 		// descRepo.saveAll(descList);
 		System.out.println("after insert");
 

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.aero51.springbootepdapi.model.Program;
+import com.aero51.springbootepdapi.model.output.OutputProgram;
 
-public interface ProgramRepository extends CrudRepository<Program, Integer> {
-	List<Program> findBychannel(String channel);
+public interface ProgramRepository extends CrudRepository<OutputProgram, Integer> {
+	List<OutputProgram> findBychannel(String channel);
 }

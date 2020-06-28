@@ -6,7 +6,7 @@
 //
 
 
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.input;
 
 import java.util.ArrayList;
 import java.util.List;

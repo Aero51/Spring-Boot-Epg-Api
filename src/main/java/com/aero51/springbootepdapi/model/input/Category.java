@@ -6,7 +6,7 @@
 //
 
 
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.input;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "content"
 })
-@XmlRootElement(name = "sub-title")
-public class SubTitle {
+@XmlRootElement(name = "category")
+public class Category {
 
     @XmlValue
     protected String content;

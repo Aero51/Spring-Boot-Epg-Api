@@ -5,8 +5,9 @@
 // Generated on: 2020.06.24 at 11:07:57 PM CEST 
 //
 
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.input;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,9 +64,11 @@ public class Channel {
 	@XmlAttribute(name = "id", required = true)
 	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
 	@XmlSchemaType(name = "NMTOKEN")
+	@Column(length = 5000)
 	protected String id;
 
 	@XmlTransient
+	@Column(length = 40000)
 	private String display_name;
 
 	@Transient

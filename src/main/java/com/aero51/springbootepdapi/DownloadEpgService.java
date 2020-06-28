@@ -2,7 +2,7 @@ package com.aero51.springbootepdapi;
 
 import org.springframework.stereotype.Service;
 
-import com.aero51.springbootepdapi.model.Tv;
+import com.aero51.springbootepdapi.model.input.Tv;
 
 import retrofit2.Response;
 

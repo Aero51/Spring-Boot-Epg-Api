@@ -1,5 +1,6 @@
 package com.aero51.springbootepdapi;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aero51.springbootepdapi.db.ChannelRepository;
+import com.aero51.springbootepdapi.db.OneRowChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
-import com.aero51.springbootepdapi.model.Program;
+import com.aero51.springbootepdapi.model.output.OneRowChannel;
+import com.aero51.springbootepdapi.model.output.OutputProgram;
 
 @RestController
 public class EpgRestController {
@@ -23,7 +25,7 @@ public class EpgRestController {
 	// @Autowired
 	// private DescRepository descRepo;
 	@Autowired
-	private ChannelRepository channelsRepo;
+	private OneRowChannelListRepository channelsRepo;
 	@Autowired
 	private ProgramRepository programRepo;
 	@Autowired
@@ -57,8 +59,15 @@ public class EpgRestController {
 	 * descRepo.findBychannel(channel_id); // channelsRepo.fin //
 	 * channelsRepo.findAll().forEach(channelList::add); return descList; }
 	 */
+	@RequestMapping(value = "/channels", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public OneRowChannel getChannel() {
+		List<OneRowChannel> channelsList = new ArrayList<OneRowChannel>();
+		channelsRepo.findAll().forEach(channelsList::add);
+		return channelsList.get(0);
+	}
+
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Program> getPrograms(@PathVariable("channel_id") String channel_id) {
+	public List<OutputProgram> getPrograms(@PathVariable("channel_id") String channel_id) {
 		return programRepo.findBychannel(channel_id);
 	}
 

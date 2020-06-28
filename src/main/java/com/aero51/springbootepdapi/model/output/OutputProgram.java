@@ -1,4 +1,4 @@
-package com.aero51.springbootepdapi.model;
+package com.aero51.springbootepdapi.model.output;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "program")
-public class Program {
+public class OutputProgram {
 
 	@Id
 	// @GeneratedValue(strategy = GenerationType.AUTO)
