@@ -32,7 +32,7 @@ public class RetrofitInstance {
 			String proxyHost = "185.198.184.14";
 			int proxyPort = 48122;
 
-			Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyHost, proxyPort));
+			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 
 			// .proxy(proxy)
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
