@@ -7,11 +7,6 @@
 
 package com.aero51.springbootepdapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -42,12 +37,10 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "content" })
-@Entity
 @XmlRootElement(name = "desc")
 public class Desc {
 	@XmlTransient
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer desc_db_id;
 
 	@XmlTransient
@@ -62,7 +55,7 @@ public class Desc {
 	}
 
 	@XmlValue
-	@Column(length = 5000)
+	// @Column(length = 5000)
 	protected String content;
 	@Transient
 	@XmlTransient

@@ -11,11 +11,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.aero51.springbootepdapi.db.ChannelRepository;
-import com.aero51.springbootepdapi.db.DescRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
 import com.aero51.springbootepdapi.model.Category;
 import com.aero51.springbootepdapi.model.Channel;
-import com.aero51.springbootepdapi.model.Desc;
 import com.aero51.springbootepdapi.model.Program;
 import com.aero51.springbootepdapi.model.Programme;
 import com.aero51.springbootepdapi.model.Tv;
@@ -29,8 +27,8 @@ import retrofit2.Response;
 @Component
 public class InitialLoadApplicationRunner implements ApplicationRunner {
 
-	@Autowired
-	private DescRepository descRepo;
+	// @Autowired
+	// private DescRepository descRepo;
 	@Autowired
 	private ChannelRepository channelsRepo;
 	@Autowired
@@ -159,22 +157,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		}
 		programRepo.saveAll(programList);
 
-		List<Desc> descList = new ArrayList<>();
-		for (Programme programme : programmeList) {
-			if (programme.getDesc().size() > 0) {
-				// programmeList.get(i).getDesc().size() > 0
-				Desc desc = programme.getDesc().get(0);
-				desc.setChannel(programme.getChannel());
-				descList.add(desc);
-
-			} else {
-				Desc desc = new Desc();
-				desc.setContent("Opis nije dostupan");
-				// desc.setLang("hr");
-				descList.add(desc);
-			}
-
-		}
 		System.out.println("before insert");
 		// descRepo.saveAll(descList);
 		System.out.println("after insert");

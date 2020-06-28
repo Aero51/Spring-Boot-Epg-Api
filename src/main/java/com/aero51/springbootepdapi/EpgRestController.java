@@ -1,6 +1,5 @@
 package com.aero51.springbootepdapi;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aero51.springbootepdapi.db.ChannelRepository;
-import com.aero51.springbootepdapi.db.DescRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
-import com.aero51.springbootepdapi.model.Desc;
 import com.aero51.springbootepdapi.model.Program;
 
 @RestController
@@ -23,8 +20,8 @@ public class EpgRestController {
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
-	@Autowired
-	private DescRepository descRepo;
+	// @Autowired
+	// private DescRepository descRepo;
 	@Autowired
 	private ChannelRepository channelsRepo;
 	@Autowired
@@ -46,22 +43,20 @@ public class EpgRestController {
 		return "Hello";
 	}
 
-	@RequestMapping(value = "/descriptions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Desc> getDesc() {
-		List<Desc> descList = new ArrayList<Desc>();
-		descRepo.findAll().forEach(descList::add);
-		return descList;
-	}
-
-	@RequestMapping(value = "/channel/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Desc> getChannels(@PathVariable("channel_id") String channel_id) {
-		List<Desc> descList = new ArrayList<Desc>();
-		descList = descRepo.findBychannel(channel_id);
-		// channelsRepo.fin
-		// channelsRepo.findAll().forEach(channelList::add);
-		return descList;
-	}
-
+	/*
+	 * @RequestMapping(value = "/descriptions", method = RequestMethod.GET, produces
+	 * = MediaType.APPLICATION_JSON_VALUE) public List<Desc> getDesc() { List<Desc>
+	 * descList = new ArrayList<Desc>(); descRepo.findAll().forEach(descList::add);
+	 * return descList; }
+	 */
+	/*
+	 * @RequestMapping(value = "/channel/{channel_id}", method = RequestMethod.GET,
+	 * produces = MediaType.APPLICATION_JSON_VALUE) public List<Desc>
+	 * getChannels(@PathVariable("channel_id") String channel_id) { List<Desc>
+	 * descList = new ArrayList<Desc>(); descList =
+	 * descRepo.findBychannel(channel_id); // channelsRepo.fin //
+	 * channelsRepo.findAll().forEach(channelList::add); return descList; }
+	 */
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Program> getPrograms(@PathVariable("channel_id") String channel_id) {
 		return programRepo.findBychannel(channel_id);

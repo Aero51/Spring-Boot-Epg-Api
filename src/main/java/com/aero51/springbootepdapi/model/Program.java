@@ -5,26 +5,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "program")
 public class Program {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer db_id;
-	protected String title;
-	protected String subTitle;
+	private String title;
+	private String subTitle;
 	@Column(length = 5000)
-	protected String desc;
+	private String description;
 	@Column(length = 2000)
-	protected String credits;
-	protected Integer date;
+	private String credits;
+	private Integer date;
 
-	protected String category;
-	protected String icon;
-	protected String channel;
-	protected String start;
-	protected String stop;
+	private String category;
+	private String icon;
+	private String channel;
+	private String start;
+	private String stop;
 
 	public String getTitle() {
 		return title;
@@ -43,11 +46,11 @@ public class Program {
 	}
 
 	public String getDesc() {
-		return desc;
+		return description;
 	}
 
 	public void setDesc(String desc) {
-		this.desc = desc;
+		this.description = desc;
 	}
 
 	public String getCredits() {
