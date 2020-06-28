@@ -1,6 +1,8 @@
 package com.aero51.springbootepdapi;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,8 +26,11 @@ public class RetrofitInstance {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+			String proxyHost = "155.138.140.220";
+			int proxyPort = 8080;
+			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(loggingInterceptor)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).addInterceptor(loggingInterceptor)
 					.addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
