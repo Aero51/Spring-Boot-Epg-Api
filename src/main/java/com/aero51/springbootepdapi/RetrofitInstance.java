@@ -31,7 +31,8 @@ public class RetrofitInstance {
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 //.proxy(proxy)
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).retryOnConnectionFailure(true)
-					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
+					.addInterceptor(loggingInterceptor).addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
+					.addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
 						public Response intercept(@NotNull Chain chain) throws IOException {
@@ -53,4 +54,12 @@ public class RetrofitInstance {
 		}
 		return retrofit.create(TheMovieDbApi.class);
 	}
+
+	private static final Interceptor REWRITE_CONTENT_LENGTH_INTERCEPTOR = new Interceptor() {
+		@Override
+		public Response intercept(Interceptor.Chain chain) throws IOException {
+			Response originalResponse = chain.proceed(chain.request());
+			return originalResponse.newBuilder().removeHeader("Content-Length").build();
+		}
+	};
 }
