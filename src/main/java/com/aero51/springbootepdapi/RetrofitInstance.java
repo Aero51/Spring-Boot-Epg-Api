@@ -3,6 +3,7 @@ package com.aero51.springbootepdapi;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.concurrent.TimeUnit;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,13 +27,17 @@ public class RetrofitInstance {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-			String proxyHost = "212.15.184.190";
-			int proxyPort = 4145;
+			String proxyHost = "149.248.52.102";
+			int proxyPort = 8080;
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
-//.proxy(proxy)
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).retryOnConnectionFailure(true)
-					.addInterceptor(loggingInterceptor).addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
-					.addNetworkInterceptor(new Interceptor() {
+
+			// .proxy(proxy)
+			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
+			// builder.connectTimeout(30, TimeUnit.SECONDS);
+			// builder.readTimeout(30, TimeUnit.SECONDS);
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
+					.readTimeout(20, TimeUnit.SECONDS).proxy(proxy).retryOnConnectionFailure(true)
+					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
 						public Response intercept(@NotNull Chain chain) throws IOException {
