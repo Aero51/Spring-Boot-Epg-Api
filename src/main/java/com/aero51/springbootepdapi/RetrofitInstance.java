@@ -26,8 +26,8 @@ public class RetrofitInstance {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-			String proxyHost = "1.20.156.230";
-			int proxyPort = 8080;
+			String proxyHost = "60.248.199.206";
+			int proxyPort = 80;
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 //.proxy(proxy)
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).addInterceptor(loggingInterceptor)
