@@ -20,7 +20,7 @@ public class Data {
 	private String proxy_level;
 	private String type;
 	private Integer speed;
-	// private List<Support> support
+	// private List<Support> support t
 
 	public String getIp() {
 		return ip;
