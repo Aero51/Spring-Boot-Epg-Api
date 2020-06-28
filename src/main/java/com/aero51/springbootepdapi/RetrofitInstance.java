@@ -27,7 +27,7 @@ public class RetrofitInstance {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-			String proxyHost = "149.248.52.102";
+			String proxyHost = "186.233.104.164";
 			int proxyPort = 8080;
 
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
@@ -36,9 +36,9 @@ public class RetrofitInstance {
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
 			// builder.connectTimeout(30, TimeUnit.SECONDS);
 			// builder.readTimeout(30, TimeUnit.SECONDS);
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
-					.readTimeout(15, TimeUnit.SECONDS).callTimeout(60, TimeUnit.SECONDS).proxy(proxy)
-					.retryOnConnectionFailure(true).addInterceptor(loggingInterceptor)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(45, TimeUnit.SECONDS)
+					.readTimeout(30, TimeUnit.SECONDS).callTimeout(60, TimeUnit.SECONDS).proxy(proxy)
+					.retryOnConnectionFailure(false).addInterceptor(loggingInterceptor)
 					.addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
