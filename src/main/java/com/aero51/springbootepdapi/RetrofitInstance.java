@@ -48,9 +48,9 @@ public class RetrofitInstance {
 							headersBuilder.set("Authorization", credential);
 
 							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
-
+//.header("Connection", "close")
 							return res.newBuilder().header("Content-Encoding", "gzip")
-									.header("Content-Type", "application/xml").header("Connection", "close").build();
+									.header("Content-Type", "application/xml").build();
 						}
 					}).build();
 			retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(JaxbConverterFactory.create())
