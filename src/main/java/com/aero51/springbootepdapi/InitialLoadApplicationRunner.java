@@ -175,6 +175,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private boolean isExcluded(String channel) {
+		// 55 channels
 		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
 				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
 				&& !channel.equals("ARENASPORT3") && !channel.equals("ARENASPORT4") && !channel.equals("ARENASPORT5")
