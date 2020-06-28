@@ -44,7 +44,7 @@ public class RetrofitInstance {
 							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
 
 							return res.newBuilder().header("Content-Encoding", "gzip")
-									.header("Content-Type", "application/xml").build();
+									.header("Content-Type", "application/xml").header("Connection", "close").build();
 						}
 					}).build();
 			retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(JaxbConverterFactory.create())
