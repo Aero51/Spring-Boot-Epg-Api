@@ -30,8 +30,8 @@ public class RetrofitInstance {
 			int proxyPort = 4145;
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 //.proxy(proxy)
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).addInterceptor(loggingInterceptor)
-					.addNetworkInterceptor(new Interceptor() {
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).retryOnConnectionFailure(true)
+					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
 						public Response intercept(@NotNull Chain chain) throws IOException {
