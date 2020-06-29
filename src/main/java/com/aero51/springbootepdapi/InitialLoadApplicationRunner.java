@@ -85,8 +85,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println("epd Throwable: " + t.getMessage());
+				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount);
 				System.out.println("epd stack trace: " + t.getStackTrace().toString());
+
 				failcount++;
 				if (failcount < 51) {
 					fetchNewPubProxy();
