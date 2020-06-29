@@ -1,5 +1,7 @@
 package com.aero51.springbootepdapi;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,8 +87,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount);
-				System.out.println("epd stack trace: " + t.getStackTrace().toString());
+				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount + 1);
+				// System.out.println("epd stack trace: " + t.getStackTrace().toString());
+
+				StringWriter sw = new StringWriter();
+				PrintWriter pw = new PrintWriter(sw);
+				t.printStackTrace(pw);
+				String sStackTrace = sw.toString(); // stack trace as a string
+				System.out.println("epd stack trace: " + sStackTrace);
 
 				failcount++;
 				if (failcount < 51) {
