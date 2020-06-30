@@ -31,6 +31,8 @@ public class EpgRestController {
 	@Autowired
 	private EpgService epgService;
 
+	private List<String> croChannels = createCroChannelsList();
+
 	// @GetMapping("/greeting")
 	// public Greeting greeting(@RequestParam(value = "name", defaultValue =
 	// "World") String name) {
@@ -69,6 +71,25 @@ public class EpgRestController {
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<OutputProgram> getPrograms(@PathVariable("channel_id") String channel_id) {
 		return programRepo.findBychannel(channel_id);
+	}
+
+	@RequestMapping(value = "/programs/cro", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<OutputProgram> getCroPrograms() {
+		return programRepo.findBychannelIn(croChannels);
+	}
+
+	private List<String> createCroChannelsList() {
+		List<String> croChannels = new ArrayList<String>();
+		croChannels.add("HRT1");
+		croChannels.add("HRT2");
+		croChannels.add("HRT3");
+		croChannels.add("HRT4");
+		croChannels.add("NOVATV");
+		croChannels.add("RTLTELEVIZIJA");
+		croChannels.add("RTL2");
+		croChannels.add("RTLKOCKICA");
+		croChannels.add("DOMATV");
+		return croChannels;
 	}
 
 }

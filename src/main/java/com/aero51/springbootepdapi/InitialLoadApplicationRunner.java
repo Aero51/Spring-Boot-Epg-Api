@@ -94,9 +94,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				PrintWriter pw = new PrintWriter(sw);
 				t.printStackTrace(pw);
 				String sStackTrace = sw.toString(); // stack trace as a string
-				System.out.println("epd stack trace: " + sStackTrace);
+				// System.out.println("epd stack trace: " + sStackTrace);
 
-				failcount++;
+				failcount = failcount + 1;
 				if (failcount < 51) {
 					fetchNewPubProxy();
 				}

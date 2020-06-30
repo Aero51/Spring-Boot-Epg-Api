@@ -8,4 +8,7 @@ import com.aero51.springbootepdapi.model.output.OutputProgram;
 
 public interface ProgramRepository extends CrudRepository<OutputProgram, Integer> {
 	List<OutputProgram> findBychannel(String channel);
+
+	List<OutputProgram> findBychannelIn(List<String> channel);
+
 }
