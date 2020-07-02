@@ -237,8 +237,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		System.out.println("before insert, output program list size: " + outputProgramList.size());
 		programRepo.deleteAll();
 		programRepo.saveAll(outputProgramList);
-
-		// descRepo.saveAll(descList);
 		System.out.println("after insert");
 
 	}
