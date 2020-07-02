@@ -46,7 +46,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	@Autowired
 	private DownloadEpgService service;
 
-	private Integer failcount = 0;
+	private Integer failcount = 1;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -87,7 +87,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount + 1);
+				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount);
 				System.out.println("epd stack trace: " + t.getStackTrace().toString());
 
 				StringWriter sw = new StringWriter();

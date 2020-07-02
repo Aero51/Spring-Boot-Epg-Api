@@ -7,12 +7,6 @@
 
 package com.aero51.springbootepdapi.model.input;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -52,23 +46,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "displayName", "url" })
 @XmlRootElement(name = "channel")
-@Entity
-@Table(name = "channel")
 public class Channel {
 	@XmlTransient
-	@Id
 	// @GeneratedValue(strategy = GenerationType.AUTO)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer channel_db_id;
 
 	@XmlAttribute(name = "id", required = true)
 	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
 	@XmlSchemaType(name = "NMTOKEN")
-	@Column(length = 5000)
 	protected String id;
 
 	@XmlTransient
-	@Column(length = 40000)
 	private String display_name;
 
 	@Transient

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "onerowchannel")
+@Table(name = "channel")
 public class OutputChannel {
 
 	@XmlTransient
