@@ -181,7 +181,15 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				outputProgram.setDate(programme.getDate());
 				if (programme.getIcon() != null) {
-					outputProgram.setIcon(programme.getIcon().getSrc());
+					String url = programme.getIcon().getSrc();
+					String prefix = "https:";
+					if (url.startsWith("//")) {
+						url = prefix + url;
+					}
+					if (url.startsWith("http:")) {
+						url = prefix + url.substring(5);
+					}
+					outputProgram.setIcon(url);
 				}
 
 				if (programme.getDesc().size() > 0) {
