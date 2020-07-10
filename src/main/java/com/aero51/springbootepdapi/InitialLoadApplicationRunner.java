@@ -139,13 +139,13 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 		Tv tv = response.body();
 		List<Channel> channelList = tv.getChannel();
-		processChannels(channelList);
+		List<OutputChannel> outputChannelList = processChannels(channelList);
 		List<Programme> programmeList = tv.getProgramme();
-		processProgrammes(programmeList);
+		processProgrammes(programmeList, outputChannelList);
 
 	}
 
-	private void processChannels(List<Channel> channelList) {
+	private List<OutputChannel> processChannels(List<Channel> channelList) {
 		System.out.println("number of channels before process: " + channelList.size());
 		List<OutputChannel> outputChannelList = new ArrayList<OutputChannel>();
 		for (Channel channel : channelList) {
@@ -161,17 +161,26 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		channelsRepo.deleteAll();
 		channelsRepo.saveAll(outputChannelList);
 		System.out.println("number of channels after process: " + outputChannelList.size());
-
+		return outputChannelList;
 	}
 
-	private void processProgrammes(List<Programme> programmeList) {
+	private void processProgrammes(List<Programme> programmeList, List<OutputChannel> outputChannelList) {
 
 		List<OutputProgram> outputProgramList = new ArrayList<OutputProgram>();
 		for (Programme programme : programmeList) {
 			String channel = programme.getChannel();
 			if (isExcluded(channel)) {
 				OutputProgram outputProgram = new OutputProgram();
-				outputProgram.setChannel(programme.getChannel());
+
+				String channel_display_name = "";
+				for (int i = 0; i < outputChannelList.size(); i++) {
+					if (outputChannelList.get(i).getId().equals(channel)) {
+						outputProgram.setChannel_display_name(outputChannelList.get(i).getDisplay_name());
+						return;
+					}
+				}
+
+				outputProgram.setChannel(channel);
 				outputProgram.setTitle(programme.getTitle().getContent());
 				outputProgram.setStart(programme.getStart());
 				outputProgram.setStop(programme.getStop());

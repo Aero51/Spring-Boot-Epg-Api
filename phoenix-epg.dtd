@@ -1,0 +1,73 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT tv (channel+,programme+)>
+<!ATTLIST tv
+    xmlns CDATA #FIXED ''
+    generator-info-name CDATA #REQUIRED
+    generator-info-url  #REQUIRED>
+
+<!ELEMENT channel (display-name,url)>
+<!ATTLIST channel
+    xmlns CDATA #FIXED ''
+    id  #REQUIRED>
+
+<!ELEMENT programme (title,sub-title?,desc*,credits?,date?,category*,icon?)>
+<!ATTLIST programme
+    xmlns CDATA #FIXED ''
+    channel  #REQUIRED
+    start CDATA #REQUIRED
+    stop CDATA #REQUIRED>
+
+<!ELEMENT display-name (#PCDATA)>
+<!ATTLIST display-name
+    xmlns CDATA #FIXED ''
+    lang  #REQUIRED>
+
+<!ELEMENT url (#PCDATA)>
+<!ATTLIST url
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title
+    xmlns CDATA #FIXED ''
+    lang  #REQUIRED>
+
+<!ELEMENT sub-title (#PCDATA)>
+<!ATTLIST sub-title
+    xmlns CDATA #FIXED ''
+    lang  #REQUIRED>
+
+<!ELEMENT desc (#PCDATA)>
+<!ATTLIST desc
+    xmlns CDATA #FIXED ''
+    lang  #IMPLIED>
+
+<!ELEMENT credits (director*,actor*,writer*)>
+<!ATTLIST credits
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT date (#PCDATA)>
+<!ATTLIST date
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT category (#PCDATA)>
+<!ATTLIST category
+    xmlns CDATA #FIXED ''
+    lang  #REQUIRED>
+
+<!ELEMENT icon EMPTY>
+<!ATTLIST icon
+    xmlns CDATA #FIXED ''
+    src  #REQUIRED>
+
+<!ELEMENT director (#PCDATA)>
+<!ATTLIST director
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT actor (#PCDATA)>
+<!ATTLIST actor
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT writer (#PCDATA)>
+<!ATTLIST writer
+    xmlns CDATA #FIXED ''>

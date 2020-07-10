@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="tv">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="channel"/>
+                <xs:element maxOccurs="unbounded" ref="programme"/>
+            </xs:sequence>
+            <xs:attribute name="generator-info-name" use="required"/>
+            <xs:attribute name="generator-info-url" use="required" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="channel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="display-name"/>
+                <xs:element ref="url"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="display-name">
+        <xs:complexType mixed="true">
+            <xs:attribute name="lang" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="url" type="xs:anyURI"/>
+    <xs:element name="programme">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="title"/>
+                <xs:element minOccurs="0" ref="sub-title"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="desc"/>
+                <xs:element minOccurs="0" ref="credits"/>
+                <xs:element minOccurs="0" ref="date"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="category"/>
+                <xs:element minOccurs="0" ref="icon"/>
+            </xs:sequence>
+            <xs:attribute name="channel" use="required" type="xs:NMTOKEN"/>
+            <xs:attribute name="start" use="required"/>
+            <xs:attribute name="stop" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="title">
+        <xs:complexType mixed="true">
+            <xs:attribute name="lang" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sub-title">
+        <xs:complexType mixed="true">
+            <xs:attribute name="lang" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="desc">
+        <xs:complexType mixed="true">
+            <xs:attribute name="lang" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="credits">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="director"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="actor"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="writer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="director" type="xs:string"/>
+    <xs:element name="actor" type="xs:string"/>
+    <xs:element name="writer" type="xs:string"/>
+    <xs:element name="date" type="xs:integer"/>
+    <xs:element name="category">
+        <xs:complexType mixed="true">
+            <xs:attribute name="lang" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="icon">
+        <xs:complexType>
+            <xs:attribute name="src" use="required" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
