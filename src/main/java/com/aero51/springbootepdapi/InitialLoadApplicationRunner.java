@@ -172,10 +172,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			if (isExcluded(channel)) {
 				OutputProgram outputProgram = new OutputProgram();
 
+				outputProgram.setChannel(channel);
+
 				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
 				outputProgram.setChannel_display_name(channel_display_name);
 
-				outputProgram.setChannel(channel);
 				outputProgram.setTitle(programme.getTitle().getContent());
 				outputProgram.setStart(programme.getStart());
 				outputProgram.setStop(programme.getStop());
