@@ -153,7 +153,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			if (isExcluded(channelId)) {
 				channel.setDisplay_name(channel.getDisplayName().getContent());
 				OutputChannel outputChannel = new OutputChannel();
-				outputChannel.setId(channel.getId());
+				outputChannel.setName(channel.getId());
 				outputChannel.setDisplay_name(channel.getDisplay_name());
 				outputChannelList.add(outputChannel);
 			}
@@ -172,13 +172,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			if (isExcluded(channel)) {
 				OutputProgram outputProgram = new OutputProgram();
 
-				String channel_display_name = "";
-				for (int i = 0; i < outputChannelList.size(); i++) {
-					if (outputChannelList.get(i).getId().equals(channel)) {
-						outputProgram.setChannel_display_name(outputChannelList.get(i).getDisplay_name());
-						return;
-					}
-				}
+				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
+				outputProgram.setChannel_display_name(channel_display_name);
 
 				outputProgram.setChannel(channel);
 				outputProgram.setTitle(programme.getTitle().getContent());
