@@ -58,8 +58,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private void initiateEpgDownload() {
-		String proxyHost = "186.233.104.164";
-		Integer proxyPort = 8080;
+		String proxyHost = "191.37.49.226";
+		Integer proxyPort = 3128;
 		List<Data> dataList = new ArrayList<Data>();
 		pubProxyRepo.findAll().forEach(dataList::add);
 		if (dataList.size() > 0) {
