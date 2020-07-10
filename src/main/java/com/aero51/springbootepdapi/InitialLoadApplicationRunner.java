@@ -174,8 +174,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				outputProgram.setChannel(channel);
 
-				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
-				outputProgram.setChannel_display_name(channel_display_name);
+				// String channel_display_name =
+				// channelsRepo.findByName(channel).get(0).getDisplay_name();
+				// outputProgram.setChannel_display_name(channel_display_name);
 
 				outputProgram.setTitle(programme.getTitle().getContent());
 				outputProgram.setStart(programme.getStart());
