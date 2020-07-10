@@ -139,6 +139,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 		Tv tv = response.body();
 		List<Channel> channelList = tv.getChannel();
+		processChannels(channelList);
 		List<Programme> programmeList = tv.getProgramme();
 		processProgrammes(programmeList);
 
