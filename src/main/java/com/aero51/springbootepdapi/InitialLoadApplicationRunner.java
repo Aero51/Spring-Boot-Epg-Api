@@ -139,13 +139,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 		Tv tv = response.body();
 		List<Channel> channelList = tv.getChannel();
-		List<OutputChannel> outputChannelList = processChannels(channelList);
 		List<Programme> programmeList = tv.getProgramme();
-		processProgrammes(programmeList, outputChannelList);
+		processProgrammes(programmeList);
 
 	}
 
-	private List<OutputChannel> processChannels(List<Channel> channelList) {
+	private void processChannels(List<Channel> channelList) {
 		System.out.println("number of channels before process: " + channelList.size());
 		List<OutputChannel> outputChannelList = new ArrayList<OutputChannel>();
 		for (Channel channel : channelList) {
@@ -161,10 +160,10 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		channelsRepo.deleteAll();
 		channelsRepo.saveAll(outputChannelList);
 		System.out.println("number of channels after process: " + outputChannelList.size());
-		return outputChannelList;
+
 	}
 
-	private void processProgrammes(List<Programme> programmeList, List<OutputChannel> outputChannelList) {
+	private void processProgrammes(List<Programme> programmeList) {
 
 		List<OutputProgram> outputProgramList = new ArrayList<OutputProgram>();
 		for (Programme programme : programmeList) {
