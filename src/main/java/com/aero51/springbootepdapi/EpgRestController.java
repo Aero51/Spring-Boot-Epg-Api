@@ -78,6 +78,14 @@ public class EpgRestController {
 		return programRepo.findBychannelIn(croChannels);
 	}
 
+	@RequestMapping(value = "/programs/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<OutputProgram> getAllPrograms() {
+		List<OutputProgram> programsList = new ArrayList<OutputProgram>();
+		programRepo.findAll().forEach(programsList::add);
+		return programsList;
+
+	}
+
 	private List<String> createCroChannelsList() {
 		List<String> croChannels = new ArrayList<String>();
 		croChannels.add("HRT1");
