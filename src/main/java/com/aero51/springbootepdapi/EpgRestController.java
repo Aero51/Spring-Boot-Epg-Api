@@ -70,12 +70,12 @@ public class EpgRestController {
 
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<OutputProgram> getPrograms(@PathVariable("channel_id") String channel_id) {
-		return programRepo.findBychannel(channel_id);
+		return programRepo.findBychannelOrderByIdAsc(channel_id);
 	}
 
 	@RequestMapping(value = "/programs/cro", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<OutputProgram> getCroPrograms() {
-		return programRepo.findBychannelIn(croChannels);
+		return programRepo.findByChannelInOrderByIdAsc(croChannels);
 	}
 
 	@RequestMapping(value = "/programs/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

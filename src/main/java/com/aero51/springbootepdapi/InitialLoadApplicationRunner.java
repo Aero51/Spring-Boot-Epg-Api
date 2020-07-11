@@ -141,6 +141,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		List<Channel> channelList = tv.getChannel();
 		processChannels(channelList);
 		List<Programme> programmeList = tv.getProgramme();
+
 		processProgrammes(programmeList);
 
 	}
@@ -174,9 +175,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				outputProgram.setChannel(channel);
 
-				// String channel_display_name =
-				// channelsRepo.findByName(channel).get(0).getDisplay_name();
-				// outputProgram.setChannel_display_name(channel_display_name);
+				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
+				outputProgram.setChannel_display_name(channel_display_name);
 
 				outputProgram.setTitle(programme.getTitle().getContent());
 				outputProgram.setStart(programme.getStart());
@@ -243,6 +243,20 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						e.printStackTrace();
 					}
 
+				} else {
+					Map<String, List<String>> map = new HashMap<>();
+					ArrayList<String> cat = new ArrayList<>();
+					cat.add("Bez kategorije");
+					map.put("Category", cat);
+					ObjectMapper gson = new ObjectMapper();
+					try {
+						String json = gson.writeValueAsString(map);
+						outputProgram.setCategory(json);
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 
 				outputProgramList.add(outputProgram);
@@ -253,6 +267,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		programRepo.saveAll(outputProgramList);
 		System.out.println("after insert");
 
+		/*
+		 * for (OutputProgram program : outputProgramList) { if
+		 * (program.getChannel().equals("NOVATV")) {
+		 * System.out.println(program.getTitle()); if
+		 * (program.getTitle().equals("Dnevnik Nove TV")) {
+		 * 
+		 * } } }
+		 */
 	}
 
 	private boolean isExcluded(String channel) {

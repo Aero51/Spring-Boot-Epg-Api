@@ -11,11 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "program", indexes = { @Index(name = "channelindex", columnList = "channel", unique = false) })
 public class OutputProgram {
-
-	@Id
 	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer db_id;
+	private Integer id;
 	private String title;
 	private String subTitle;
 	@Column(length = 5000)

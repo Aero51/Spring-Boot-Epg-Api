@@ -10,4 +10,8 @@ public interface ProgramRepository extends CrudRepository<OutputProgram, Integer
 	List<OutputProgram> findBychannel(String channel);
 
 	List<OutputProgram> findBychannelIn(List<String> channel);
+
+	List<OutputProgram> findBychannelOrderByIdAsc(String channel);
+
+	List<OutputProgram> findByChannelInOrderByIdAsc(List<String> channel);
 }
