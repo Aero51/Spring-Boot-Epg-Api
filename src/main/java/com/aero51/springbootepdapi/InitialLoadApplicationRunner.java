@@ -137,7 +137,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
 				failcount = failcount + 1;
 				if (failcount < 51) {
-					fetchNewPubProxy();
+					try {
+						Thread.sleep(1000);
+						fetchNewPubProxy();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 			}
 		});
