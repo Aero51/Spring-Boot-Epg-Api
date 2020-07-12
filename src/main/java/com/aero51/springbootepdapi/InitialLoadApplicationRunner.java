@@ -192,8 +192,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
 				outputProgram.setChannel_display_name(channel_display_name);
+				String title = programme.getTitle().getContent();
+				if (title.matches(".*[(][?][)].*")) {
+					title = title.replace("(?)", "");
+				}
 
-				outputProgram.setTitle(programme.getTitle().getContent());
+				outputProgram.setTitle(title);
 				outputProgram.setStart(programme.getStart());
 				outputProgram.setStop(programme.getStop());
 				if (programme.getSubTitle() != null) {
