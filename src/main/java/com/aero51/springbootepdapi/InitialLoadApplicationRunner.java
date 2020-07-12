@@ -97,7 +97,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				String sStackTrace = sw.toString(); // stack trace as a string
 				// System.out.println("epd stack trace: " + sStackTrace);
 				epgFailcount = epgFailcount + 1;
-				if (epgFailcount < 20) {
+				System.out.println("phoenixrebornbuild epgFailcount: " + epgFailcount);
+				if (epgFailcount < 10) {
 					initiateEpgDownload();
 				}
 

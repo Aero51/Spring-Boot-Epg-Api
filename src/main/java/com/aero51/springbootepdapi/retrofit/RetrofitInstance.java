@@ -52,7 +52,8 @@ public class RetrofitInstance {
 							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
 							// .header("Connection", "close")
 							return res.newBuilder().header("Content-Encoding", "gzip")
-									.header("Content-Type", "application/xml").build();
+									.header("Content-Type", "application/xml").header("Accept-Encoding", "identity")
+									.build();
 						}
 					}).build();
 			epdRetrofit = new Retrofit.Builder().baseUrl(EPG_URL).addConverterFactory(JaxbConverterFactory.create())
