@@ -22,7 +22,7 @@ public class RetrofitInstance {
 
 	private static Retrofit epdRetrofit = null;
 	private static Retrofit pubProxyRetrofit = null;
-	private static final String EPG_URL = "http://epg.phoenixrebornbuild.com.hr/";
+	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr/";
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 
 	public static synchronized RetrofitApi getEpdApi(String proxyHost, int proxyPort) {
@@ -36,8 +36,8 @@ public class RetrofitInstance {
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
 			// builder.connectTimeout(30, TimeUnit.SECONDS);
 			// builder.readTimeout(30, TimeUnit.SECONDS);
-			// .proxy(proxy)
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
+
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).connectTimeout(15, TimeUnit.SECONDS)
 					.readTimeout(15, TimeUnit.SECONDS).callTimeout(30, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
 						@NotNull

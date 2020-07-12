@@ -68,7 +68,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			proxyHost = data.getIp();
 			proxyPort = data.getPort();
 		}
-
+		System.out.println("initiateEpgDownload proxyHost : " + proxyHost + " ,proxyPort: " + proxyPort);
 		RetrofitApi epdRetrofitApi = RetrofitInstance.getEpdApi(proxyHost, proxyPort);
 		Call<Tv> call = epdRetrofitApi.getEpg();
 
@@ -98,19 +98,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				// System.out.println("epd stack trace: " + sStackTrace);
 				epgFailcount = epgFailcount + 1;
 				System.out.println("phoenixrebornbuild epgFailcount: " + epgFailcount);
-				if (epgFailcount < 10) {
-					try {
-						Thread.sleep(1000);
-						initiateEpgDownload();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
 
 				if (pubProxyFailcount < 51) {
-					// fetchNewPubProxy();
+					fetchNewPubProxy();
 				}
 			}
 		});
@@ -129,7 +119,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 							"PubProxy  Response not ok: " + response.code() + " ,message:" + response.message());
 					pubProxyFailcount = pubProxyFailcount + 1;
 					if (pubProxyFailcount < 51) {
-						fetchNewPubProxy();
+						try {
+							Thread.sleep(1000);
+							fetchNewPubProxy();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
 					}
 				} else {
 					System.out.println(
@@ -146,7 +143,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			@Override
 			public void onFailure(Call<PubProxyResponseModel> call, Throwable t) {
 				// TODO Auto-generated method stub
-				System.out.println("PubProxy Throwable: " + t.getMessage());
+				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
 				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
 				pubProxyFailcount = pubProxyFailcount + 1;
 				if (pubProxyFailcount < 51) {
