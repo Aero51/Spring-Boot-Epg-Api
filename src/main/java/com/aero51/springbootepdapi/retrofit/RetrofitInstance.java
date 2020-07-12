@@ -22,7 +22,7 @@ public class RetrofitInstance {
 
 	private static Retrofit epdRetrofit = null;
 	private static Retrofit pubProxyRetrofit = null;
-	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr/";
+	private static final String EPG_URL = "http://epg.phoenixrebornbuild.com.hr/";
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 
 	public static synchronized RetrofitApi getEpdApi(String proxyHost, int proxyPort) {
