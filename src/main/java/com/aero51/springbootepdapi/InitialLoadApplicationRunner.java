@@ -46,7 +46,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	@Autowired
 	private DownloadEpgService service;
 
-	private Integer failcount = 1;
+	private Integer pubProxyFailcount = 0;
+	private Integer epgFailcount = 0;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -87,7 +88,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + failcount);
+				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + pubProxyFailcount);
 				System.out.println("epd stack trace: " + t.getStackTrace().toString());
 
 				StringWriter sw = new StringWriter();
@@ -95,9 +96,13 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				t.printStackTrace(pw);
 				String sStackTrace = sw.toString(); // stack trace as a string
 				// System.out.println("epd stack trace: " + sStackTrace);
+				epgFailcount = epgFailcount + 1;
+				if (epgFailcount < 20) {
+					initiateEpgDownload();
+				}
 
-				if (failcount < 51) {
-					fetchNewPubProxy();
+				if (pubProxyFailcount < 51) {
+					// fetchNewPubProxy();
 				}
 			}
 		});
@@ -114,8 +119,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (!response.isSuccessful()) {
 					System.out.println(
 							"PubProxy  Response not ok: " + response.code() + " ,message:" + response.message());
-					failcount = failcount + 1;
-					if (failcount < 51) {
+					pubProxyFailcount = pubProxyFailcount + 1;
+					if (pubProxyFailcount < 51) {
 						fetchNewPubProxy();
 					}
 				} else {
@@ -125,7 +130,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					Data data = response.body().getData().get(0);
 					pubProxyRepo.save(data);
 					initiateEpgDownload();
-					failcount = failcount + 1;
+					pubProxyFailcount = pubProxyFailcount + 1;
 				}
 
 			}
@@ -135,8 +140,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				// TODO Auto-generated method stub
 				System.out.println("PubProxy Throwable: " + t.getMessage());
 				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
-				failcount = failcount + 1;
-				if (failcount < 51) {
+				pubProxyFailcount = pubProxyFailcount + 1;
+				if (pubProxyFailcount < 51) {
 					try {
 						Thread.sleep(1000);
 						fetchNewPubProxy();
