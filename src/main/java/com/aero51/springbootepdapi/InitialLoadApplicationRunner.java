@@ -99,7 +99,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				epgFailcount = epgFailcount + 1;
 				System.out.println("phoenixrebornbuild epgFailcount: " + epgFailcount);
 				if (epgFailcount < 10) {
-					initiateEpgDownload();
+					try {
+						Thread.sleep(1000);
+						initiateEpgDownload();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 
 				if (pubProxyFailcount < 51) {
