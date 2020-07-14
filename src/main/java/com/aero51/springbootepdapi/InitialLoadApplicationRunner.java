@@ -48,6 +48,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	private Integer pubProxyFailcount = 0;
 	private Integer epgFailcount = 0;
+	private List<String> croChannelList = createCroChannelsList();
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -173,7 +174,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	private void processChannels(List<Channel> channelList) {
 		System.out.println("number of channels before process: " + channelList.size());
-		List<OutputChannel> outputChannelList = new ArrayList<OutputChannel>();
+		List<OutputChannel> unsortedChannelList = new ArrayList<OutputChannel>();
 		for (Channel channel : channelList) {
 			String channelId = channel.getId();
 			if (isExcluded(channelId)) {
@@ -181,13 +182,33 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				OutputChannel outputChannel = new OutputChannel();
 				outputChannel.setName(channel.getId());
 				outputChannel.setDisplay_name(channel.getDisplay_name());
-				outputChannelList.add(outputChannel);
+				unsortedChannelList.add(outputChannel);
+
 			}
 		}
-		channelsRepo.deleteAll();
-		channelsRepo.saveAll(outputChannelList);
-		System.out.println("number of channels after process: " + outputChannelList.size());
 
+		channelsRepo.deleteAll();
+		channelsRepo.saveAll(unsortedChannelList);
+		List<OutputChannel> sortedOutputChannelList = new ArrayList<OutputChannel>();
+		// channelsRepo.saveAll(unsortedChannelList);
+		for (int i = 0; i < croChannelList.size(); i++) {
+
+			sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).get(0));
+		}
+		// sortedOutputChannelList = channelsRepo.findByNameIn(croChannelList);
+		channelsRepo.deleteAll();
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (isSortedExcluded(outputChannel.getName())) {
+				sortedOutputChannelList.add(outputChannel);
+			}
+
+		}
+		channelsRepo.saveAll(sortedOutputChannelList);
+
+		System.out.println("number of channels after process unsorted: " + unsortedChannelList.size());
+		System.out.println("number of channels after process sorted: " + sortedOutputChannelList.size());
+		// System.out.println("number of channels after process: " +
+		// unsortedChannelList.size());
 	}
 
 	private void processProgrammes(List<Programme> programmeList) {
@@ -228,7 +249,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				}
 
 				if (programme.getDesc().size() > 0) {
-					// programmeList.get(i).getDesc().size() > 0
 					outputProgram.setDesc(programme.getDesc().get(0).getContent());
 				} else {
 					outputProgram.setDesc("Opis nije dostupan");
@@ -248,7 +268,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						String json = gson.writeValueAsString(map);
 						outputProgram.setCredits(json);
 					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
+						System.out.println("Credits converting to json error! ");
 						e.printStackTrace();
 					}
 				}
@@ -268,7 +288,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						String json = gson.writeValueAsString(map);
 						outputProgram.setCategory(json);
 					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
+						System.out.println("Category converting to json error! ");
 						e.printStackTrace();
 					}
 
@@ -282,7 +302,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						String json = gson.writeValueAsString(map);
 						outputProgram.setCategory(json);
 					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
+						System.out.println("Category Bez kategorije converting to json error! ");
 						e.printStackTrace();
 					}
 
@@ -296,14 +316,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		programRepo.saveAll(outputProgramList);
 		System.out.println("after insert");
 
-		/*
-		 * for (OutputProgram program : outputProgramList) { if
-		 * (program.getChannel().equals("NOVATV")) {
-		 * System.out.println(program.getTitle()); if
-		 * (program.getTitle().equals("Dnevnik Nove TV")) {
-		 * 
-		 * } } }
-		 */
 	}
 
 	private boolean isExcluded(String channel) {
@@ -344,6 +356,28 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		// VIASATEXPLORE,VIASATHISTORY,VIASATNATURE,TRAVELCHANNEL,INVESTIGATIONDISCOVERY,
 		// DAVINCILEARNING,COMEDYCENTRALEXTRA,PINKFOLK,GRANDNARODNATV,PINKSUPERKIDS,DISNEYCHANNEL
 		// stari 20 dana
+	}
+
+	private boolean isSortedExcluded(String channel) {
+		// 55 channels
+		return !channel.equals("HRT1") && !channel.equals("HRT2") && !channel.equals("HRT3")
+				&& !channel.equals("NOVATV") && !channel.equals("RTLTELEVIZIJA") && !channel.equals("RTL2")
+				&& !channel.equals("DOMATV") && !channel.equals("RTLKOCKICA") && !channel.equals("HRT4");
+
+	}
+
+	private List<String> createCroChannelsList() {
+		List<String> croChannels = new ArrayList<String>();
+		croChannels.add("HRT1");
+		croChannels.add("HRT2");
+		croChannels.add("HRT3");
+		croChannels.add("HRT4");
+		croChannels.add("NOVATV");
+		croChannels.add("RTLTELEVIZIJA");
+		croChannels.add("RTL2");
+		croChannels.add("RTLKOCKICA");
+		croChannels.add("DOMATV");
+		return croChannels;
 	}
 
 }

@@ -1,0 +1,62 @@
+	List<OutputChannel> sortedOutputChannelList = new ArrayList<OutputChannel>();
+
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("HRT1")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("HRT2")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("HRT3")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("NOVATV")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("RTLTELEVIZIJA")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("RTL2")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("DOMATV")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("RTLKOCKICA")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (outputChannel.getName().equals("HRT4")) {
+				sortedOutputChannelList.add(outputChannel);
+				return;
+			}
+		}
+
+		for (OutputChannel outputChannel : unsortedChannelList) {
+			if (isSortedExcluded(outputChannel.getName())) {
+				sortedOutputChannelList.add(outputChannel);
+			}
+		}

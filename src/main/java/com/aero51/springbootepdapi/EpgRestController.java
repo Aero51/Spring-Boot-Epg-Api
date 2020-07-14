@@ -63,9 +63,9 @@ public class EpgRestController {
 	 */
 	@RequestMapping(value = "/channels", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<OutputChannel> getChannels() {
-		List<OutputChannel> channelsList = new ArrayList<OutputChannel>();
-		channelsRepo.findAll().forEach(channelsList::add);
-		return channelsList;
+		// List<OutputChannel> channelsList = new ArrayList<OutputChannel>();
+		// channelsRepo.findAll().forEach(channelsList::add);
+		return channelsRepo.findAllByOrderByIdAsc();
 	}
 
 	@RequestMapping(value = "/program/{channel_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

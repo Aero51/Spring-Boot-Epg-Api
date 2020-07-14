@@ -15,7 +15,7 @@ public class OutputChannel {
 	@XmlTransient
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer channel_db_id;
+	private Integer id;
 
 	private String name;
 	private String display_name;
