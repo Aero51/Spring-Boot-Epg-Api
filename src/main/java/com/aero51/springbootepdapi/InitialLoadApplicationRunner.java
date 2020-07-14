@@ -116,8 +116,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 			@Override
 			public void onResponse(Call<PubProxyResponseModel> call, Response<PubProxyResponseModel> response) {
 				if (!response.isSuccessful()) {
-					System.out.println(
-							"PubProxy  Response not ok: " + response.code() + " ,message:" + response.message());
+					System.out.println("PubProxy  Response not ok: " + response.code() + " ,message:"
+							+ response.message() + " ,pubProxyFailcount: " + pubProxyFailcount);
 					pubProxyFailcount = pubProxyFailcount + 1;
 					if (pubProxyFailcount < 51) {
 						try {
