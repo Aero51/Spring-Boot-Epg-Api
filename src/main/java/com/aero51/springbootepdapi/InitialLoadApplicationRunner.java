@@ -108,7 +108,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 			@Override
 			public void onFailure(Call<Tv> call, Throwable t) {
-				System.out.println("epd Throwable: " + t.getMessage() + " ,failcount: " + pubProxyFailcount);
+				System.out.println("epd Throwable: " + t.getMessage() + " ,pubProxy failcount: " + pubProxyFailcount);
 				System.out.println("epd stack trace: " + t.getStackTrace().toString());
 
 				StringWriter sw = new StringWriter();
@@ -118,7 +118,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				// System.out.println("epd stack trace: " + sStackTrace);
 				epgFailcount = epgFailcount + 1;
 				System.out.println("phoenixrebornbuild epgFailcount: " + epgFailcount);
-
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				if (pubProxyFailcount < 51) {
 					fetchNewPubProxy();
 				} else {
