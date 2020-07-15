@@ -12,6 +12,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.aero51.springbootepdapi.db.GimmeProxyDataRepository;
 import com.aero51.springbootepdapi.db.OutputChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
 import com.aero51.springbootepdapi.db.PubProxyDataRepository;
@@ -45,6 +46,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	@Autowired
 	private PubProxyDataRepository pubProxyRepo;
 	@Autowired
+	private GimmeProxyDataRepository gimmeProxyRepo;
+	@Autowired
 	private DownloadEpgService service;
 
 	private Integer pubProxyFailcount = 0;
@@ -57,20 +60,33 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		// TODO Auto-generated method stub
 		System.out.println("InitialLoad");
 		// Thread.sleep(5000);
-		// initiateEpgDownload();
-		fetchNewGimmeProxy();
+		initiateEpgDownload();
+
 		System.out.println("InitialLoad complete");
 	}
 
 	private void initiateEpgDownload() {
 		String proxyHost = "191.37.49.226";
 		Integer proxyPort = 3128;
-		List<Data> dataList = new ArrayList<Data>();
-		pubProxyRepo.findAll().forEach(dataList::add);
-		if (dataList.size() > 0) {
-			Data data = dataList.get(0);
-			proxyHost = data.getIp();
-			proxyPort = data.getPort();
+
+		// fetchNewGimmeProxy();
+		if (pubProxyFailcount < 51) {
+			List<Data> dataList = new ArrayList<Data>();
+			pubProxyRepo.findAll().forEach(dataList::add);
+			if (dataList.size() > 0) {
+				Data data = dataList.get(0);
+				proxyHost = data.getIp();
+				proxyPort = data.getPort();
+			}
+		} else {
+			List<GimmeProxyResponseModel> gimmeProxyList = new ArrayList<GimmeProxyResponseModel>();
+			gimmeProxyRepo.findAll().forEach(gimmeProxyList::add);
+			if (gimmeProxyList.size() > 0) {
+				GimmeProxyResponseModel gimmeProxyResponseModel = gimmeProxyList.get(0);
+				proxyHost = gimmeProxyResponseModel.getIp();
+				proxyPort = gimmeProxyResponseModel.getPort();
+			}
+
 		}
 		System.out.println("initiateEpgDownload proxyHost : " + proxyHost + " ,proxyPort: " + proxyPort);
 		RetrofitApi epdRetrofitApi = RetrofitInstance.getEpdApi(proxyHost, proxyPort);
@@ -105,6 +121,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				if (pubProxyFailcount < 51) {
 					fetchNewPubProxy();
+				} else {
+					fetchNewGimmeProxy();
 				}
 			}
 		});
@@ -186,23 +204,17 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 					}
 				} else {
-					System.out.println("GimmeProxy Response ok: " + response.code() + " ,ip :" + response.body().getIp()
+					System.out.println("GimmeProxy Response ok: " + response.code() + " ,ip: " + response.body().getIp()
 							+ " ,protocol: " + response.body().getProtocol());
 					// pubProxyRepo.deleteAll();
 					// Data data = response.body().getData().get(0);
 					// pubProxyRepo.save(data);
 					// initiateEpgDownload();
 					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					if (gimmeProxyFailcount < 5) {
-						try {
-							Thread.sleep(1000);
-							fetchNewGimmeProxy();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					gimmeProxyRepo.deleteAll();
+					gimmeProxyRepo.save(response.body());
+					initiateEpgDownload();
 
-					}
 				}
 
 			}

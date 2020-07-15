@@ -1,7 +1,17 @@
 package com.aero51.springbootepdapi.model.gimmeproxy;
 
-public class GimmeProxyResponseModel {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "gimme_proxy")
+public class GimmeProxyResponseModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer db_id;
 	private boolean supportsHttps;
 	private String protocol;
 	private String ip;
