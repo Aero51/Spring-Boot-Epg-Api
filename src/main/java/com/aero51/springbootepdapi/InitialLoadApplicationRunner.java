@@ -70,7 +70,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		Integer proxyPort = 3128;
 
 		// fetchNewGimmeProxy();
-		if (pubProxyFailcount < 51) {
+		if (pubProxyFailcount < 50) {
 			List<Data> dataList = new ArrayList<Data>();
 			pubProxyRepo.findAll().forEach(dataList::add);
 			if (dataList.size() > 0) {
@@ -148,7 +148,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-
+					} else {
+						fetchNewGimmeProxy();
 					}
 				} else {
 					System.out.println(
