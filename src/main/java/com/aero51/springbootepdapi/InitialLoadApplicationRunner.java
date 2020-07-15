@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.aero51.springbootepdapi.db.OutputChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
 import com.aero51.springbootepdapi.db.PubProxyDataRepository;
+import com.aero51.springbootepdapi.model.gimmeproxy.GimmeProxyResponseModel;
 import com.aero51.springbootepdapi.model.input.Category;
 import com.aero51.springbootepdapi.model.input.Channel;
 import com.aero51.springbootepdapi.model.input.Programme;
@@ -47,6 +48,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	private DownloadEpgService service;
 
 	private Integer pubProxyFailcount = 0;
+	private Integer gimmeProxyFailcount = 0;
 	private Integer epgFailcount = 0;
 	private List<String> croChannelList = createCroChannelsList();
 
@@ -55,7 +57,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		// TODO Auto-generated method stub
 		System.out.println("InitialLoad");
 		// Thread.sleep(5000);
-		initiateEpgDownload();
+		// initiateEpgDownload();
+		fetchNewGimmeProxy();
 		System.out.println("InitialLoad complete");
 	}
 
@@ -109,7 +112,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private void fetchNewPubProxy() {
-		RetrofitApi pubProxyRetrofitApi = RetrofitInstance.getpubProxyApi();
+		RetrofitApi pubProxyRetrofitApi = RetrofitInstance.getPubProxyApi();
 		Call<PubProxyResponseModel> call = pubProxyRetrofitApi.getPubProxy();
 		call.enqueue(new Callback<PubProxyResponseModel>() {
 
@@ -151,6 +154,69 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					try {
 						Thread.sleep(1000);
 						fetchNewPubProxy();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		});
+	}
+
+	private void fetchNewGimmeProxy() {
+		RetrofitApi gimmeProxyRetrofitApi = RetrofitInstance.getGimmeProxyApi();
+		Call<GimmeProxyResponseModel> call = gimmeProxyRetrofitApi.getGimmeProxy();
+		call.enqueue(new Callback<GimmeProxyResponseModel>() {
+
+			@Override
+			public void onResponse(Call<GimmeProxyResponseModel> call, Response<GimmeProxyResponseModel> response) {
+				if (!response.isSuccessful()) {
+					System.out.println("GimmeProxy  Response not ok: " + response.code() + " ,message:"
+							+ response.message() + " ,gimmeProxyFailcount: " + gimmeProxyFailcount);
+					gimmeProxyFailcount = gimmeProxyFailcount + 1;
+					if (gimmeProxyFailcount < 51) {
+						try {
+							Thread.sleep(1000);
+							fetchNewGimmeProxy();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+				} else {
+					System.out.println("GimmeProxy Response ok: " + response.code() + " ,ip :" + response.body().getIp()
+							+ " ,protocol: " + response.body().getProtocol());
+					// pubProxyRepo.deleteAll();
+					// Data data = response.body().getData().get(0);
+					// pubProxyRepo.save(data);
+					// initiateEpgDownload();
+					gimmeProxyFailcount = gimmeProxyFailcount + 1;
+					if (gimmeProxyFailcount < 5) {
+						try {
+							Thread.sleep(1000);
+							fetchNewGimmeProxy();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+				}
+
+			}
+
+			@Override
+			public void onFailure(Call<GimmeProxyResponseModel> call, Throwable t) {
+				// TODO Auto-generated method stub
+				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
+				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
+				gimmeProxyFailcount = gimmeProxyFailcount + 1;
+				if (gimmeProxyFailcount < 51) {
+					try {
+						Thread.sleep(1000);
+						fetchNewGimmeProxy();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

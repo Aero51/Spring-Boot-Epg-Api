@@ -1,5 +1,6 @@
 package com.aero51.springbootepdapi.retrofit;
 
+import com.aero51.springbootepdapi.model.gimmeproxy.GimmeProxyResponseModel;
 import com.aero51.springbootepdapi.model.input.Tv;
 import com.aero51.springbootepdapi.model.pubproxy.PubProxyResponseModel;
 
@@ -15,7 +16,9 @@ public interface RetrofitApi {
 	@GET("/")
 	Call<Tv> getEpg();
 
-	@GET("proxy")
+	@GET("proxy?type=http")
 	Call<PubProxyResponseModel> getPubProxy();
 
+	@GET("getProxy?get=true&supportsHttps=true?anonymityLevel=1?protocol=http")
+	Call<GimmeProxyResponseModel> getGimmeProxy();
 }

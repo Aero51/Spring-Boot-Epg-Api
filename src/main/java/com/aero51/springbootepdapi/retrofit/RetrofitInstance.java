@@ -22,8 +22,10 @@ public class RetrofitInstance {
 
 	private static Retrofit epdRetrofit = null;
 	private static Retrofit pubProxyRetrofit = null;
+	private static Retrofit gimmeProxyRetrofit = null;
 	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr/";
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
+	private static final String GIMME_PROXY_URL = "http://gimmeproxy.com/api/";
 
 	public static synchronized RetrofitApi getEpdApi(String proxyHost, int proxyPort) {
 		if (epdRetrofit == null) {
@@ -63,19 +65,34 @@ public class RetrofitInstance {
 		return epdRetrofit.create(RetrofitApi.class);
 	}
 
-	public static synchronized RetrofitApi getpubProxyApi() {
+	public static synchronized RetrofitApi getPubProxyApi() {
 		if (pubProxyRetrofit == null) {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
-//.addInterceptor(loggingInterceptor)
+			// .addInterceptor(loggingInterceptor)
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 			pubProxyRetrofit = new Retrofit.Builder().baseUrl(PUB_PROXY_URL)
 					.addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build();
 
 		}
 		return pubProxyRetrofit.create(RetrofitApi.class);
+	}
+
+	public static synchronized RetrofitApi getGimmeProxyApi() {
+		if (gimmeProxyRetrofit == null) {
+
+			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
+			// .addInterceptor(loggingInterceptor)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+			gimmeProxyRetrofit = new Retrofit.Builder().baseUrl(GIMME_PROXY_URL)
+					.addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build();
+
+		}
+		return gimmeProxyRetrofit.create(RetrofitApi.class);
 	}
 
 	private static final Interceptor REWRITE_CONTENT_LENGTH_INTERCEPTOR = new Interceptor() {
