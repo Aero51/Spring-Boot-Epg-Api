@@ -10,9 +10,11 @@ import retrofit2.http.Headers;
 import retrofit2.http.Streaming;
 
 public interface RetrofitApi {
-
+	// "Content-Type: application/gzip;charset=utf-8",
+	// @Headers({ "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+	// AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" })
 	@Streaming
-	@Headers({ "Content-Type: application/gzip;charset=utf-8", })
+	@Headers("User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36")
 	@GET("/")
 	Call<Tv> getEpg();
 
