@@ -38,7 +38,7 @@ public class RetrofitInstance {
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
 			// builder.connectTimeout(30, TimeUnit.SECONDS);
 			// builder.readTimeout(30, TimeUnit.SECONDS);
-//
+//.proxy(proxy)
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).connectTimeout(15, TimeUnit.SECONDS)
 					.readTimeout(20, TimeUnit.SECONDS).callTimeout(35, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
