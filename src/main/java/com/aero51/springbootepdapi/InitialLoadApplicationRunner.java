@@ -125,13 +125,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 
-				if (epgFailcount < 6) {
-					initiateEpgDownload();
+				if (pubProxyFailcount < 51) {
+					fetchNewPubProxy();
+				} else {
+					fetchNewGimmeProxy();
 				}
-				/*
-				 * if (pubProxyFailcount < 51) { fetchNewPubProxy(); } else {
-				 * fetchNewGimmeProxy(); }
-				 */
+
 			}
 		});
 
