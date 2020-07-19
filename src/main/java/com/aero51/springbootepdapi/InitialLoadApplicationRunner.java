@@ -138,6 +138,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 				// if (epgFailcount < 5) {
+
 				if (pubProxyFailcount < 51) {
 					fetchNewPubProxy();
 				} else {
