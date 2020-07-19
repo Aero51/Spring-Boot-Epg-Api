@@ -214,7 +214,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					System.out.println("GimmeProxy  Response not ok: " + response.code() + " ,message:"
 							+ response.message() + " ,gimmeProxyFailcount: " + gimmeProxyFailcount);
 					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					if (gimmeProxyFailcount < 10) {
+					if (gimmeProxyFailcount < 20) {
 						try {
 							Thread.sleep(1000);
 							fetchNewGimmeProxy();
