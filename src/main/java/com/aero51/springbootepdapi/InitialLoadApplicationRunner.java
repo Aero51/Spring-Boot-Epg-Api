@@ -137,12 +137,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if (epgFailcount < 15) {
-					if (pubProxyFailcount < 51) {
-						fetchNewPubProxy();
-					} else {
-						fetchNewGimmeProxy();
-					}
+
+				if (pubProxyFailcount < 51) {
+					fetchNewPubProxy();
+				} else {
+					fetchNewGimmeProxy();
 				}
 
 			}
