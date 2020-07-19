@@ -98,6 +98,13 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (!response.isSuccessful()) {
 					System.out
 							.println("epd Tv Response not ok: " + response.code() + " ,message:" + response.message());
+					epgFailcount = epgFailcount + 1;
+					if (pubProxyFailcount < 51) {
+						fetchNewPubProxy();
+					} else {
+						fetchNewGimmeProxy();
+					}
+
 				} else {
 					System.out.println(
 							"epd Tv Response ok: " + response.code() + " ,:" + response.body().getProgramme().size());
