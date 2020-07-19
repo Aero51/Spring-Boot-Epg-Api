@@ -487,7 +487,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("USK") && !channel.equals("VALENTINOETNO") && !channel.equals("VALENTINOMUSIC")
 				&& !channel.equals("VASKANAL") && !channel.equals("VIKOM") && !channel.equals("ZENSKATV")
 				&& !channel.equals("PINK3") && !channel.equals("PRVAPLUS") && !channel.equals("DISCOVERYWORLDIT")
-				&& !channel.equals("STARTVTR") && !channel.equals("PINKHITS1");
+				&& !channel.equals("STARTVTR") && !channel.equals("PINKHITS1") && !channel.equals("BLOOMBERG");
 
 		// A1BIH,BOSNATV1,BOXNATION,BTSPORT1,BTSPORT2 uopce nema programa
 		// ALJAZEERA, KITCHENTV,EENTERTAINMENT,ARENASPORT1,ARENASPORT2,ARENASPORT3 imaju
