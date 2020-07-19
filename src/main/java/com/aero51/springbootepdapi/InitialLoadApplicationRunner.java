@@ -99,7 +99,13 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					System.out
 							.println("epd Tv Response not ok: " + response.code() + " ,message:" + response.message());
 					epgFailcount = epgFailcount + 1;
-					if (pubProxyFailcount < 51) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (pubProxyFailcount < 10) {
 						fetchNewPubProxy();
 					} else {
 						fetchNewGimmeProxy();
@@ -132,7 +138,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 
-				if (pubProxyFailcount < 51) {
+				if (pubProxyFailcount < 10) {
 					fetchNewPubProxy();
 				} else {
 					fetchNewGimmeProxy();
@@ -208,7 +214,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					System.out.println("GimmeProxy  Response not ok: " + response.code() + " ,message:"
 							+ response.message() + " ,gimmeProxyFailcount: " + gimmeProxyFailcount);
 					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					if (gimmeProxyFailcount < 51) {
+					if (gimmeProxyFailcount < 10) {
 						try {
 							Thread.sleep(1000);
 							fetchNewGimmeProxy();
