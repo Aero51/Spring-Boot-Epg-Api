@@ -137,11 +137,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-				if (pubProxyFailcount < 51) {
-					fetchNewPubProxy();
-				} else {
-					fetchNewGimmeProxy();
+				if (epgFailcount < 15) {
+					if (pubProxyFailcount < 51) {
+						fetchNewPubProxy();
+					} else {
+						fetchNewGimmeProxy();
+					}
 				}
 
 			}
@@ -249,7 +250,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (gimmeProxyFailcount < 51) {
 					try {
 						Thread.sleep(1000);
-						// fetchNewGimmeProxy();
+						fetchNewGimmeProxy();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
