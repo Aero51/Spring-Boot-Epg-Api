@@ -249,7 +249,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (gimmeProxyFailcount < 51) {
 					try {
 						Thread.sleep(1000);
-						fetchNewGimmeProxy();
+						// fetchNewGimmeProxy();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
