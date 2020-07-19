@@ -105,7 +105,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					if (pubProxyFailcount < 10) {
+					if (pubProxyFailcount < 51) {
 						fetchNewPubProxy();
 					} else {
 						fetchNewGimmeProxy();
@@ -138,7 +138,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 
-				if (pubProxyFailcount < 10) {
+				if (pubProxyFailcount < 51) {
 					fetchNewPubProxy();
 				} else {
 					fetchNewGimmeProxy();
