@@ -16,7 +16,8 @@ public interface RetrofitApi {
 	// AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" })
 	// "Content-Type: application/gzip",
 	@Streaming
-	@Headers({ "Connection: close", "Accept-Encoding: identity", "User-Agent: Chrome/83.0.4103.116 Safari/537.36" })
+	@Headers({ "Connection: close", "Content-Type: application/gzip",
+			"User-Agent: Chrome/83.0.4103.116 Safari/537.36" })
 	@GET("/")
 	Call<Tv> getEpg();
 
