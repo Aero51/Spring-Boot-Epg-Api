@@ -14,8 +14,9 @@ public interface RetrofitApi {
 	// @Headers({ "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 	// Accept-Encoding: identity
 	// AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" })
+	// "Content-Type: application/gzip",
 	@Streaming
-	@Headers({ "Content-Type: application/gzip", "Connection: close",
+	@Headers({ "Connection: close",
 			"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" })
 	@GET("/")
 	Call<Tv> getEpg();
