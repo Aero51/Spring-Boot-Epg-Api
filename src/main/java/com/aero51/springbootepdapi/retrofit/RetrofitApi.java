@@ -15,6 +15,7 @@ public interface RetrofitApi {
 	// Accept-Encoding: identity
 	// AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" })
 	// "Content-Type: application/gzip",
+	// "Accept-Encoding: gzip",
 	@Streaming
 	@Headers({ "Connection: close", "Content-Type: application/gzip",
 			"User-Agent: Chrome/83.0.4103.116 Safari/537.36" })
