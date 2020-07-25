@@ -36,8 +36,6 @@ public class RetrofitInstance {
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
 
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
-			// builder.connectTimeout(30, TimeUnit.SECONDS);
-			// builder.readTimeout(30, TimeUnit.SECONDS);
 			// .proxy(proxy)
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).followRedirects(false)
 					.followSslRedirects(false).connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
