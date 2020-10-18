@@ -70,7 +70,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		Integer proxyPort = 3128;
 
 		// fetchNewGimmeProxy();
-		if (pubProxyFailcount < 50) {
+		if (pubProxyFailcount < 11) {
 			List<Data> dataList = new ArrayList<Data>();
 			pubProxyRepo.findAll().forEach(dataList::add);
 			if (dataList.size() > 0) {
@@ -105,7 +105,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					if (pubProxyFailcount < 51) {
+					if (pubProxyFailcount < 11) {
 						fetchNewPubProxy();
 					} else {
 						fetchNewGimmeProxy();
@@ -160,7 +160,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					System.out.println("PubProxy  Response not ok: " + response.code() + " ,message:"
 							+ response.message() + " ,pubProxyFailcount: " + pubProxyFailcount);
 					pubProxyFailcount = pubProxyFailcount + 1;
-					if (pubProxyFailcount < 51) {
+					if (pubProxyFailcount < 11) {
 						try {
 							Thread.sleep(1000);
 							fetchNewPubProxy();
@@ -214,7 +214,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					System.out.println("GimmeProxy  Response not ok: " + response.code() + " ,message:"
 							+ response.message() + " ,gimmeProxyFailcount: " + gimmeProxyFailcount);
 					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					if (gimmeProxyFailcount < 20) {
+					if (gimmeProxyFailcount < 11) {
 						try {
 							Thread.sleep(1000);
 							fetchNewGimmeProxy();
