@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.jetbrains.annotations.NotNull;
 
-import okhttp3.Credentials;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -37,7 +36,7 @@ public class RetrofitInstance {
 
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
 			// .proxy
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).followRedirects(true)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).followRedirects(false)
 					.followSslRedirects(false).connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
 					.callTimeout(40, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
@@ -47,8 +46,8 @@ public class RetrofitInstance {
 							Request req = chain.request();
 							Headers.Builder headersBuilder = req.headers().newBuilder();
 
-							String credential = Credentials.basic("test", "password");
-							headersBuilder.set("Authorization", credential);
+							// String credential = Credentials.basic("test", "password");
+							// headersBuilder.set("Authorization", credential);
 
 							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
 							// .header("Connection", "close")
