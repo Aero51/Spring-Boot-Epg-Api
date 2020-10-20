@@ -138,7 +138,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 				// if (epgFailcount < 5) {
-				if (pubProxyFailcount < 51) {
+				if (pubProxyFailcount < 11) {
 					fetchNewPubProxy();
 				} else {
 					fetchNewGimmeProxy();
@@ -189,7 +189,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
 				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
 				pubProxyFailcount = pubProxyFailcount + 1;
-				if (pubProxyFailcount < 51) {
+				if (pubProxyFailcount < 11) {
 					try {
 						Thread.sleep(1000);
 						fetchNewPubProxy();
@@ -246,7 +246,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
 				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
 				gimmeProxyFailcount = gimmeProxyFailcount + 1;
-				if (gimmeProxyFailcount < 51) {
+				if (gimmeProxyFailcount < 11) {
 					try {
 						Thread.sleep(1000);
 						fetchNewGimmeProxy();
