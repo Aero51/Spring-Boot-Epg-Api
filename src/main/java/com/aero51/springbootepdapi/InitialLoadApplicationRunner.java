@@ -276,14 +276,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		List<OutputChannel> unsortedChannelList = new ArrayList<OutputChannel>();
 		for (Channel channel : channelList) {
 			String channelId = channel.getId();
-			if (isExcluded(channelId)) {
-				channel.setDisplay_name(channel.getDisplayName().getContent());
-				OutputChannel outputChannel = new OutputChannel();
-				outputChannel.setName(channel.getId());
-				outputChannel.setDisplay_name(channel.getDisplay_name());
-				unsortedChannelList.add(outputChannel);
+			// if (isExcluded(channelId)) {
+			channel.setDisplay_name(channel.getDisplayName().getContent());
+			OutputChannel outputChannel = new OutputChannel();
+			outputChannel.setName(channel.getId());
+			outputChannel.setDisplay_name(channel.getDisplay_name());
+			unsortedChannelList.add(outputChannel);
 
-			}
+			// }
 		}
 
 		channelsRepo.deleteAll();
@@ -292,20 +292,21 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		// channelsRepo.saveAll(unsortedChannelList);
 		for (int i = 0; i < croChannelList.size(); i++) {
 
-			sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).get(0));
+			// sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).get(0));
 		}
-		// sortedOutputChannelList = channelsRepo.findByNameIn(croChannelList);
-		channelsRepo.deleteAll();
+
+		// channelsRepo.deleteAll();
 		for (OutputChannel outputChannel : unsortedChannelList) {
 			if (isSortedExcluded(outputChannel.getName())) {
-				sortedOutputChannelList.add(outputChannel);
+				// sortedOutputChannelList.add(outputChannel);
 			}
 
 		}
-		channelsRepo.saveAll(sortedOutputChannelList);
+		// channelsRepo.saveAll(sortedOutputChannelList);
 
 		System.out.println("number of channels after process unsorted: " + unsortedChannelList.size());
-		System.out.println("number of channels after process sorted: " + sortedOutputChannelList.size());
+		// System.out.println("number of channels after process sorted: " +
+		// sortedOutputChannelList.size());
 		// System.out.println("number of channels after process: " +
 		// unsortedChannelList.size());
 	}
