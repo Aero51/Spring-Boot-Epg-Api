@@ -17,7 +17,7 @@ public class OutputProgram {
 	private Integer id;
 	private String title;
 	private String subTitle;
-	@Column(length = 5000)
+	@Column(length = 10000)
 	private String description;
 	@Column(length = 2000)
 	private String credits;
