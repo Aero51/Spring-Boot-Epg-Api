@@ -276,14 +276,14 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		List<OutputChannel> unsortedChannelList = new ArrayList<OutputChannel>();
 		for (Channel channel : channelList) {
 			String channelId = channel.getId();
-			// if (isExcluded(channelId)) {
-			channel.setDisplay_name(channel.getDisplayName().getContent());
-			OutputChannel outputChannel = new OutputChannel();
-			outputChannel.setName(channel.getId());
-			outputChannel.setDisplay_name(channel.getDisplay_name());
-			unsortedChannelList.add(outputChannel);
+			if (isExcluded(channelId)) {
+				channel.setDisplay_name(channel.getDisplayName().getContent());
+				OutputChannel outputChannel = new OutputChannel();
+				outputChannel.setName(channel.getId());
+				outputChannel.setDisplay_name(channel.getDisplay_name());
+				unsortedChannelList.add(outputChannel);
 
-			// }
+			}
 		}
 
 		channelsRepo.deleteAll();
@@ -312,7 +312,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private void processProgrammes(List<Programme> programmeList) {
-
+		System.out.println("number of programs before process: " + programmeList.size());
 		List<OutputProgram> outputProgramList = new ArrayList<OutputProgram>();
 		for (Programme programme : programmeList) {
 			String channel = programme.getChannel();
@@ -426,8 +426,18 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo") && !channel.equals("foxcrime.slo")
 				&& !channel.equals("foxlife.slo") && !channel.equals("foxmovies.slo")
 				&& !channel.equals("cinestarpremiere1.slo") && !channel.equals("amc.slo")
-				&& !channel.equals("tv1000.slo") && !channel.equals("24kitchen.slo")
-				&& !channel.equals("24kitchen.slo");
+				&& !channel.equals("tv1000.slo") && !channel.equals("24kitchen.slo") && !channel.equals("tlc.slo")
+				&& !channel.equals("davinci.slo") && !channel.equals("travel.slo") && !channel.equals("travel.slo")
+				&& !channel.equals("viasathis.slo") && !channel.equals("history.slo") && !channel.equals("natgeo.slo")
+				&& !channel.equals("natgeowild.slo") && !channel.equals("animalplanet.slo")
+				&& !channel.equals("ginx.slo") && !channel.equals("liverpooltv") && !channel.equals("mutv")
+				&& !channel.equals("Italia 1") && !channel.equals("Italia 2") && !channel.equals("premiumaction.it")
+				&& !channel.equals("premiumcrime.it") && !channel.equals("tgcom24.it")
+				&& !channel.equals("comedycentral.de") && !channel.equals("skynostalgie.de")
+				&& !channel.equals("planet.de") && !channel.equals("rbb.de") && !channel.equals("hr1.de")
+				&& !channel.equals("daserste.de") && !channel.equals("zdf.de") && !channel.equals("zdfinfo.de")
+				&& !channel.equals("mdr.de") && !channel.equals("mdr.de") && !channel.equals("wdr.de")
+				&& !channel.equals("br.de");
 	}
 
 	private boolean isExcludedOld(String channel) {
