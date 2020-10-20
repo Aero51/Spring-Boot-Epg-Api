@@ -420,6 +420,18 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	private boolean isExcluded(String channel) {
 		// 193 channels
+		return !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("skysportnews")
+				&& !channel.equals("nova24") && !channel.equals("goldtv") && !channel.equals("hbo1.slo")
+				&& !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo") && !channel.equals("tv3medias")
+				&& !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo") && !channel.equals("foxcrime.slo")
+				&& !channel.equals("foxlife.slo") && !channel.equals("foxmovies.slo")
+				&& !channel.equals("cinestarpremiere1.slo") && !channel.equals("amc.slo")
+				&& !channel.equals("tv1000.slo") && !channel.equals("24kitchen.slo")
+				&& !channel.equals("24kitchen.slo");
+	}
+
+	private boolean isExcludedOld(String channel) {
+		// 193 channels
 		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
 				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
 				&& !channel.equals("ARENASPORT3") && !channel.equals("ARENASPORT4") && !channel.equals("ARENASPORT5")
