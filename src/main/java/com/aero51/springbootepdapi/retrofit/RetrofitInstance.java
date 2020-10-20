@@ -22,7 +22,7 @@ public class RetrofitInstance {
 	private static Retrofit epdRetrofit = null;
 	private static Retrofit pubProxyRetrofit = null;
 	private static Retrofit gimmeProxyRetrofit = null;
-	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr";// "http://epg.iptvhr.net/";
+	private static final String EPG_URL = "https://epg.phoenixrebornbuild.com.hr"; // "http://epg.iptvhr.net/"; //// ;
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 	private static final String GIMME_PROXY_URL = "http://gimmeproxy.com/api/";
 
@@ -37,10 +37,12 @@ public class RetrofitInstance {
 			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
 			//
 
-			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).followRedirects(true)
-					.followSslRedirects(true).connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
+			OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).followRedirects(false)
+					.followSslRedirects(false).connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
 					.callTimeout(40, TimeUnit.SECONDS).retryOnConnectionFailure(false)
-					.addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
+					.addInterceptor(loggingInterceptor)
+
+					.addNetworkInterceptor(new Interceptor() {
 						@NotNull
 						@Override
 						public Response intercept(@NotNull Chain chain) throws IOException {
