@@ -17,8 +17,10 @@ public interface RetrofitApi {
 	// "Content-Type: application/gzip",
 	// "Accept-Encoding: gzip",
 	// "Connection: close",
+	// @Headers({ "Content-Type: application/gzip", "User-Agent:
+	// PostmanRuntime/7.26.5" })
 	@Streaming
-	@Headers({ "Connection: close", "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5" })
+	@Headers({ "User-Agent: PostmanRuntime/7.26.5" })
 	@GET("/")
 	Call<Tv> getEpg();
 
