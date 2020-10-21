@@ -419,12 +419,15 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private boolean isExcluded(String channel) {
-		// 193 channels
-		return !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("skysportnews")
-				&& !channel.equals("nova24") && !channel.equals("goldtv") && !channel.equals("hbo1.slo")
-				&& !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo") && !channel.equals("tv3medias")
-				&& !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo") && !channel.equals("foxcrime.slo")
-				&& !channel.equals("foxlife.slo") && !channel.equals("foxmovies.slo")
+
+		// crtiæi: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
+		return !channel.equals("hrt5") && !channel.equals("mtvadria") && !channel.equals("mezzo")
+				&& !channel.equals("pinkextra") && !channel.equals("ducktv") && !channel.equals("ginx")
+				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria")
+				&& !channel.equals("skysportnews") && !channel.equals("nova24") && !channel.equals("goldtv")
+				&& !channel.equals("hbo1.slo") && !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo")
+				&& !channel.equals("tv3medias") && !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo")
+				&& !channel.equals("foxcrime.slo") && !channel.equals("foxlife.slo") && !channel.equals("foxmovies.slo")
 				&& !channel.equals("cinestarpremiere1.slo") && !channel.equals("amc.slo")
 				&& !channel.equals("tv1000.slo") && !channel.equals("24kitchen.slo") && !channel.equals("tlc.slo")
 				&& !channel.equals("davinci.slo") && !channel.equals("travel.slo") && !channel.equals("travel.slo")
@@ -456,7 +459,19 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("13thstreet.de") && !channel.equals("tntfilm.de") && !channel.equals("tntserie.de")
 				&& !channel.equals("tntcomedy.de") && !channel.equals("axn.de") && !channel.equals("tlc.de")
 				&& !channel.equals("fox.de") && !channel.equals("syfy.de") && !channel.equals("sonytv.de")
-				&& !channel.equals("universalchannel.de");
+				&& !channel.equals("universalchannel.de") && !channel.equals("romancetv.de")
+				&& !channel.equals("kinowelt.de") && !channel.equals("superrtl.de") && !channel.equals("toggoplus.de")
+				&& !channel.equals("kika.de") && !channel.equals("babytv.de") && !channel.equals("disneychannel.de")
+				&& !channel.equals("disneyjunior.de") && !channel.equals("cartoonnetwork.de")
+				&& !channel.equals("cartoonnetwork.de") && !channel.equals("nickelodeon.de")
+				&& !channel.equals("nickjr.de") && !channel.equals("n24doku.de")
+				&& !channel.equals("spiegelgeschichte.de") && !channel.equals("spiegelwissen.de")
+				&& !channel.equals("spiegelwissen.de") && !channel.equals("natgeo.de")
+				&& !channel.equals("natgeowild.de") && !channel.equals("weltderwunder.de")
+				&& !channel.equals("discoverychannel.de") && !channel.equals("historychannel.de")
+				&& !channel.equals("animalplanet.de") && !channel.equals("dmax.de") && !channel.equals("anixe.de")
+				&& !channel.equals("phoenix.de") && !channel.equals("mtvgermany.de") && !channel.equals("jukebox.de")
+				&& !channel.equals("jukebox.de");
 
 	}
 
