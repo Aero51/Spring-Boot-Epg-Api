@@ -437,7 +437,27 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("planet.de") && !channel.equals("rbb.de") && !channel.equals("hr1.de")
 				&& !channel.equals("daserste.de") && !channel.equals("zdf.de") && !channel.equals("zdfinfo.de")
 				&& !channel.equals("mdr.de") && !channel.equals("mdr.de") && !channel.equals("wdr.de")
-				&& !channel.equals("br.de");
+				&& !channel.equals("br.de") && !channel.equals("swr.de") && !channel.equals("3sat.de")
+				&& !channel.equals("arte.de") && !channel.equals("ndr.de") && !channel.equals("rtl.de")
+				&& !channel.equals("rtl2.de") && !channel.equals("rtlplus.de") && !channel.equals("rtlliving.de")
+				&& !channel.equals("rtlpassion.de") && !channel.equals("rtlcrime.de") && !channel.equals("nitro.de")
+				&& !channel.equals("vox.de") && !channel.equals("pro7.de") && !channel.equals("pro7maxx.de")
+				&& !channel.equals("pro7fun.de") && !channel.equals("kabel1.de") && !channel.equals("kabel1classics.de")
+				&& !channel.equals("kabel1doku.de") && !channel.equals("sat1.de") && !channel.equals("sat1gold.de")
+				&& !channel.equals("sat1emotions.de") && !channel.equals("servustv.de") && !channel.equals("eotv.de")
+				&& !channel.equals("sixx.de") && !channel.equals("ntv.de") && !channel.equals("tele5.de")
+				&& !channel.equals("heimatkanal.de") && !channel.equals("sonnenklar.de")
+				&& !channel.equals("eentertainment.de") && !channel.equals("atv.de") && !channel.equals("atv2.de")
+				&& !channel.equals("puls4.de") && !channel.equals("orf1.de") && !channel.equals("orf2.de")
+				&& !channel.equals("orf3.de") && !channel.equals("srf1.de") && !channel.equals("srf2.de")
+				&& !channel.equals("skycinema.de") && !channel.equals("skycinema24.de") && !channel.equals("skyhits.de")
+				&& !channel.equals("skyfamily.de") && !channel.equals("skyaction.de") && !channel.equals("skycomedy.de")
+				&& !channel.equals("sky1.de") && !channel.equals("skyatlantic.de") && !channel.equals("skykrimi.de")
+				&& !channel.equals("13thstreet.de") && !channel.equals("tntfilm.de") && !channel.equals("tntserie.de")
+				&& !channel.equals("tntcomedy.de") && !channel.equals("axn.de") && !channel.equals("tlc.de")
+				&& !channel.equals("fox.de") && !channel.equals("syfy.de") && !channel.equals("sonytv.de")
+				&& !channel.equals("universalchannel.de");
+
 	}
 
 	private boolean isExcludedOld(String channel) {
