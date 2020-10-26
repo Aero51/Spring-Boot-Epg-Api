@@ -23,7 +23,7 @@ public interface RetrofitApi {
 	// @Headers({ "Content-Type: application/gzip", "User-Agent:
 	// PostmanRuntime/7.26.5" })
 //	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5" })
-	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5", "Connection: close" })
+	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5" })
 	@GET("/")
 	Call<Tv> getEpg();
 
