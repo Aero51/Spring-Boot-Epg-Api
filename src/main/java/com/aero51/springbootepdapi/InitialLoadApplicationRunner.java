@@ -430,6 +430,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("bundesliga2") && !channel.equals("bundesliga3") && !channel.equals("bundesliga4")
 				&& !channel.equals("bundesliga5") && !channel.equals("bundesliga6") && !channel.equals("bundesliga7")
 				&& !channel.equals("bundesliga8") && !channel.equals("bundesliga9") && !channel.equals("bundesliga10")
+				&& !channel.equals("automototv.it") && !channel.equals("rai1.it") && !channel.equals("rai2.it")
+				&& !channel.equals("rai3.it") && !channel.equals("rai5.it") && !channel.equals("rai4.it")
+				&& !channel.equals("raipremium.it") && !channel.equals("raimovie.it") && !channel.equals("raistoria.it")
+				&& !channel.equals("Italia 1") && !channel.equals("Italia 2") && !channel.equals("canale5.it")
+				&& !channel.equals("rete4.it") && !channel.equals("mediasetextra.it") && !channel.equals("iris.it")
 
 				&& !channel.equals("skysportnews") && !channel.equals("nova24") && !channel.equals("goldtv")
 				&& !channel.equals("hbo1.slo") && !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo")
