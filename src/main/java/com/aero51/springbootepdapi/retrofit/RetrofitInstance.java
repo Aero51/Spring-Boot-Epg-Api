@@ -5,12 +5,8 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.util.concurrent.TimeUnit;
 
-import org.jetbrains.annotations.NotNull;
-
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -41,22 +37,20 @@ public class RetrofitInstance {
 					.connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
 					.callTimeout(40, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 					.addInterceptor(loggingInterceptor)
-
-					.addNetworkInterceptor(new Interceptor() {
-						@NotNull
-						@Override
-						public Response intercept(@NotNull Chain chain) throws IOException {
-							Request req = chain.request();
-							Headers.Builder headersBuilder = req.headers().newBuilder();
-							// String credential = Credentials.basic("test", "password");
-							// headersBuilder.set("Authorization", credential);
-							Response res = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build());
-							// .header("Connection", "close")
-							return res.newBuilder().header("Content-Encoding", "gzip")
-									.header("Content-Type", "application/xml").header("Accept-Encoding", "identity")
-									.build();
-						}
-					}).build();
+					/*
+					 * .addNetworkInterceptor(new Interceptor() {
+					 * 
+					 * @NotNull
+					 * 
+					 * @Override public Response intercept(@NotNull Chain chain) throws IOException
+					 * { Request req = chain.request(); Headers.Builder headersBuilder =
+					 * req.headers().newBuilder(); // String credential = Credentials.basic("test",
+					 * "password"); // headersBuilder.set("Authorization", credential); Response res
+					 * = chain.proceed(req.newBuilder().headers(headersBuilder.build()).build()); //
+					 * .header("Connection", "close") return
+					 * res.newBuilder().header("Content-Encoding", "gzip") .header("Content-Type",
+					 * "application/xml").header("Accept-Encoding", "identity") .build(); } })
+					 */.build();
 
 			epdRetrofit = new Retrofit.Builder().baseUrl(EPG_URL).addConverterFactory(JaxbConverterFactory.create())
 					.client(okHttpClient).build();
