@@ -22,7 +22,7 @@ public class RetrofitInstance {
 	private static Retrofit epdRetrofit = null;
 	private static Retrofit pubProxyRetrofit = null;
 	private static Retrofit gimmeProxyRetrofit = null;
-	private static final String EPG_URL = "http://epg.phoenixrebornbuild.com.hr"; // "http://epg.iptvhr.net/";
+	private static final String EPG_URL = "http://epg.phoenixrebornbuild.com.hr/"; // "http://epg.iptvhr.net/";
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 	private static final String GIMME_PROXY_URL = "http://gimmeproxy.com/api/";
 
