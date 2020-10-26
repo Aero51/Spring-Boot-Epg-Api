@@ -418,12 +418,19 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcluded(String channel) {
+	private boolean isExcludedNew(String channel) {
 
-		// crtiæi: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
+		// crtici: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
 		return !channel.equals("hrt5") && !channel.equals("mtvadria") && !channel.equals("mezzo")
 				&& !channel.equals("pinkextra") && !channel.equals("ducktv") && !channel.equals("ginx")
-				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria")
+				// empty
+
+				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
+				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
+				&& !channel.equals("bundesliga2") && !channel.equals("bundesliga3") && !channel.equals("bundesliga4")
+				&& !channel.equals("bundesliga5") && !channel.equals("bundesliga6") && !channel.equals("bundesliga7")
+				&& !channel.equals("bundesliga8") && !channel.equals("bundesliga9") && !channel.equals("bundesliga10")
+
 				&& !channel.equals("skysportnews") && !channel.equals("nova24") && !channel.equals("goldtv")
 				&& !channel.equals("hbo1.slo") && !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo")
 				&& !channel.equals("tv3medias") && !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo")
@@ -475,7 +482,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcludedOld(String channel) {
+	private boolean isExcluded(String channel) {
 		// 193 channels
 		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
 				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
