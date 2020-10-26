@@ -6,6 +6,7 @@ import com.aero51.springbootepdapi.model.pubproxy.PubProxyResponseModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Streaming;
 
 public interface RetrofitApi {
@@ -22,8 +23,7 @@ public interface RetrofitApi {
 	// @Headers({ "Content-Type: application/gzip", "User-Agent:
 	// PostmanRuntime/7.26.5" })
 //	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5" })
-	// @Headers({ "Content-Type: application/gzip", "User-Agent:
-	// PostmanRuntime/7.26.5" })
+	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.27.5" })
 	@GET("/")
 	Call<Tv> getEpg();
 
