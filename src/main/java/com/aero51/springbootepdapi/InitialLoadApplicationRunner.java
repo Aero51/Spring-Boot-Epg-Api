@@ -418,7 +418,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcluded(String channel) {
+	private boolean isExcludedNew(String channel) {
 
 		// crtici: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
 		return !channel.equals("hrt5") && !channel.equals("mtvadria") && !channel.equals("mezzo")
@@ -514,7 +514,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcludedOld(String channel) {
+	private boolean isExcluded(String channel) {
 		// 193 channels
 		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
 				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
