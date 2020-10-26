@@ -24,7 +24,7 @@ public interface RetrofitApi {
 	// PostmanRuntime/7.26.5" })
 //	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5" })
 	@Headers({ "Content-Type: application/gzip", "User-Agent: PostmanRuntime/7.26.5", "Connection: close" })
-	@GET("epg.phoenixrebornbuild.com.hr/")
+	@GET(".com.hr/")
 	Call<Tv> getEpg();
 
 	@GET("proxy?type=http")
