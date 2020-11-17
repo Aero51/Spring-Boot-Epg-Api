@@ -290,19 +290,20 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 		List<OutputChannel> sortedOutputChannelList = new ArrayList<OutputChannel>();
 		channelsRepo.saveAll(unsortedChannelList);
-		for (int i = 0; i < croChannelList.size(); i++) {
 
-			sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).get(0));
-		}
-
-		channelsRepo.deleteAll();
-		for (OutputChannel outputChannel : unsortedChannelList) {
-			if (isSortedExcluded(outputChannel.getName())) {
-				sortedOutputChannelList.add(outputChannel);
-			}
-
-		}
-		channelsRepo.saveAll(sortedOutputChannelList);
+		/*
+		 * for (int i = 0; i < croChannelList.size(); i++) {
+		 * 
+		 * sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).
+		 * get(0)); }
+		 * 
+		 * channelsRepo.deleteAll(); for (OutputChannel outputChannel :
+		 * unsortedChannelList) { if (isSortedExcluded(outputChannel.getName())) {
+		 * sortedOutputChannelList.add(outputChannel); }
+		 * 
+		 * } channelsRepo.saveAll(sortedOutputChannelList);
+		 * 
+		 */
 
 		System.out.println("number of channels after process unsorted: " + unsortedChannelList.size());
 		// System.out.println("number of channels after process sorted: " +
