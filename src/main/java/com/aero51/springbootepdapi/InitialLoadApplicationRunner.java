@@ -418,18 +418,20 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcludedNew(String channel) {
+	private boolean isExcluded(String channel) {
 
 		// crtici: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
 		return !channel.equals("hrt5") && !channel.equals("mtvadria") && !channel.equals("mezzo")
 				&& !channel.equals("pinkextra") && !channel.equals("ducktv") && !channel.equals("ginx")
 				// empty
+				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
 				&& !channel.equals("bundesliga2") && !channel.equals("bundesliga3") && !channel.equals("bundesliga4")
 				&& !channel.equals("bundesliga5") && !channel.equals("bundesliga6") && !channel.equals("bundesliga7")
 				&& !channel.equals("bundesliga8") && !channel.equals("bundesliga9") && !channel.equals("bundesliga10")
+
 				&& !channel.equals("automototv.it") && !channel.equals("rai1.it") && !channel.equals("rai2.it")
 				&& !channel.equals("rai3.it") && !channel.equals("rai5.it") && !channel.equals("rai4.it")
 				&& !channel.equals("raipremium.it") && !channel.equals("raimovie.it") && !channel.equals("raistoria.it")
@@ -463,8 +465,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("skysportf1.it") && !channel.equals("milantv.it") && !channel.equals("interts.it")
 				&& !channel.equals("romatv.it") && !channel.equals("juventustv.it") && !channel.equals("supertennis.it")
 				&& !channel.equals("sportitalia.it") && !channel.equals("raisport1.it")
-
 				&& !channel.equals("skysportnews") && !channel.equals("nova24") && !channel.equals("goldtv")
+
 				&& !channel.equals("hbo1.slo") && !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo")
 				&& !channel.equals("tv3medias") && !channel.equals("foxtv.slo") && !channel.equals("foxcrime.slo")
 				&& !channel.equals("foxcrime.slo") && !channel.equals("foxlife.slo") && !channel.equals("foxmovies.slo")
@@ -473,8 +475,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("davinci.slo") && !channel.equals("travel.slo") && !channel.equals("travel.slo")
 				&& !channel.equals("viasathis.slo") && !channel.equals("history.slo") && !channel.equals("natgeo.slo")
 				&& !channel.equals("natgeowild.slo") && !channel.equals("animalplanet.slo")
-				&& !channel.equals("ginx.slo") && !channel.equals("liverpooltv") && !channel.equals("mutv")
-				&& !channel.equals("Italia 1") && !channel.equals("Italia 2") && !channel.equals("tgcom24.it")
+				&& !channel.equals("ginx.slo")
+
+				&& !channel.equals("liverpooltv") && !channel.equals("mutv") && !channel.equals("Italia 1")
+				&& !channel.equals("Italia 2") && !channel.equals("tgcom24.it")
+
 				&& !channel.equals("comedycentral.de") && !channel.equals("skynostalgie.de")
 				&& !channel.equals("planet.de") && !channel.equals("rbb.de") && !channel.equals("hr1.de")
 				&& !channel.equals("daserste.de") && !channel.equals("zdf.de") && !channel.equals("zdfinfo.de")
@@ -510,11 +515,21 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("discoverychannel.de") && !channel.equals("historychannel.de")
 				&& !channel.equals("animalplanet.de") && !channel.equals("dmax.de") && !channel.equals("anixe.de")
 				&& !channel.equals("phoenix.de") && !channel.equals("mtvgermany.de") && !channel.equals("jukebox.de")
-				&& !channel.equals("jukebox.de");
+				&& !channel.equals("jukebox.de")
+
+				// not empty
+				&& !channel.equals("oyocinema") && !channel.equals("oyofamily") && !channel.equals("zdravatv")
+				&& !channel.equals("cinestartv.rs") && !channel.equals("cinestaraction.rs")
+				&& !channel.equals("cinestarpremiere1.rs") && !channel.equals("cinestarpremiere2.rs")
+				&& !channel.equals("cinestarfantasy.rs") && !channel.equals("cinestarcomedy.rs")
+
+				&& !channel.equals("24kitchen") && !channel.equals("foodnetwork")
+
+				&& !channel.equals("zapadtv") && !channel.equals("planetsport2") && !channel.equals("planetsport1");
 
 	}
 
-	private boolean isExcluded(String channel) {
+	private boolean isExcludedOld(String channel) {
 		// 193 channels
 		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
 				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
