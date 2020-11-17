@@ -435,8 +435,19 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("pinkfolk1") && !channel.equals("pinkfolk2") && !channel.equals("pinknroll")
 				&& !channel.equals("pinkmusic") && !channel.equals("ultra") && !channel.equals("miniultra")
 				&& !channel.equals("hayatovci") && !channel.equals("orlando") && !channel.equals("jimjam")
+				&& !channel.equals("babytv") && !channel.equals("hayatplus") && !channel.equals("face")
+				&& !channel.equals("elta") && !channel.equals("tvsarajevo") && !channel.equals("alfatv")
+				&& !channel.equals("rtvkiss") && !channel.equals("ntv101") && !channel.equals("mtvigman")
+				&& !channel.equals("rtvkiss") && !channel.equals("slon") && !channel.equals("rtvzenica")
+				&& !channel.equals("usk") && !channel.equals("bosnatv1") && !channel.equals("televizija5")
+				&& !channel.equals("rts3") && !channel.equals("rtrsplus") && !channel.equals("prvaplus")
+				&& !channel.equals("nova.rs") && !channel.equals("kcn1") && !channel.equals("studiob")
+				&& !channel.equals("nova.rs") && !channel.equals("kcn1") && !channel.equals("novipazar")
+				&& !channel.equals("palmaplus") && !channel.equals("srpskanaucna") && !channel.equals("soskanal")
+				&& !channel.equals("rtcgSat") && !channel.equals("pink3") && !channel.equals("pinkbravo")
+				&& !channel.equals("pinkkoncert") && !channel.equals("sporttv1") && !channel.equals("sporttv2")
 
-				&& !channel.equals("babytv") && !channel.equals("hayatplus") && !channel.equals("jimjam")
+				&& !channel.equals("pinkkoncert") && !channel.equals("sporttv1") && !channel.equals("sporttv2")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
@@ -550,8 +561,15 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				// children not empty
 				&& !channel.equals("nickelodeon.rs") && !channel.equals("pinksuper") && !channel.equals("minimax")
+				&& !channel.equals("pinkkids")
+				// ostalo not empty
+				&& !channel.equals("n1") && !channel.equals("n1.ba") && !channel.equals("n1.rs")
+				&& !channel.equals("tv1") && !channel.equals("alternativna") && !channel.equals("a1balkan")
+				&& !channel.equals("prva.cg") && !channel.equals("prvamax") && !channel.equals("prvaworld")
+				&& !channel.equals("o2") && !channel.equals("kcn2") && !channel.equals("kcn3")
+				&& !channel.equals("vijesticg") && !channel.equals("777") && !channel.equals("pinkkuvar")
 
-				&& !channel.equals("pinkkids") && !channel.equals("pinksuper") && !channel.equals("minimax");
+				&& !channel.equals("hntv") && !channel.equals("777") && !channel.equals("pinkkuvar");
 
 	}
 
