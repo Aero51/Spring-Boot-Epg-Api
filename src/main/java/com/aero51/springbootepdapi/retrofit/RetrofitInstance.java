@@ -36,8 +36,11 @@ public class RetrofitInstance {
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().followRedirects(true).followSslRedirects(true)
 					.connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
 					.callTimeout(40, TimeUnit.SECONDS).retryOnConnectionFailure(false)
+
+					.addInterceptor(loggingInterceptor)
+
 					/*
-					 * .addInterceptor(loggingInterceptor).addNetworkInterceptor(new Interceptor() {
+					 * .addNetworkInterceptor(new Interceptor() {
 					 * 
 					 * @NotNull
 					 * 
@@ -49,7 +52,6 @@ public class RetrofitInstance {
 					 * .header("Connection", "close") return
 					 * res.newBuilder().header("Content-Encoding", "gzip") .header("Content-Type",
 					 * "application/xml").header("Accept-Encoding", "identity") .build(); } })
-					 * 
 					 */
 
 					.build();
