@@ -34,8 +34,8 @@ public class RetrofitInstance {
 			// .proxy(proxy)
 
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().followRedirects(true).followSslRedirects(true)
-					.connectTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
-					.callTimeout(40, TimeUnit.SECONDS).retryOnConnectionFailure(false)
+					.connectTimeout(20, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS)
+					.callTimeout(50, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 
 					.addInterceptor(loggingInterceptor)
 

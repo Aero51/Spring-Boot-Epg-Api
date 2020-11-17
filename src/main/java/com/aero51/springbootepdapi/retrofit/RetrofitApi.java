@@ -26,7 +26,7 @@ public interface RetrofitApi {
 	// @Headers({ "Content-Type: application/gzip",
 	// "User-Agent: AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116
 	// Safari/537.36" })
-	@Headers({ "Content-Type: application/gzip",
+	@Headers({ "Connection: close",
 			"User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0" })
 	@GET("/")
 	Call<Tv> getEpg();
