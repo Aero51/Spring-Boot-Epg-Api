@@ -494,6 +494,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("m1gold") && !channel.equals("cbsdrama") && !channel.equals("rtdocumentary")
 				&& !channel.equals("espn") && !channel.equals("espn2") && !channel.equals("btsport1")
 				&& !channel.equals("btsport2") && !channel.equals("boxnation") && !channel.equals("wwe")
+				&& !channel.equals("citytv")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
