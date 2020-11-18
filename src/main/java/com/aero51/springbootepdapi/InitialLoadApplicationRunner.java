@@ -458,9 +458,42 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("tringcomedy") && !channel.equals("tringmax") && !channel.equals("tringfantazi")
 				&& !channel.equals("tringplanet") && !channel.equals("tringshqip") && !channel.equals("tringtring")
 				&& !channel.equals("tringjolly") && !channel.equals("tring3plus") && !channel.equals("digigold1")
-				&& !channel.equals("vikom") && !channel.equals("tvkakanj")
-
-				&& !channel.equals("bdctv") && !channel.equals("vikom") && !channel.equals("tvkakanj")
+				&& !channel.equals("vikom") && !channel.equals("tvkakanj") && !channel.equals("bdctv")
+				&& !channel.equals("citytv") && !channel.equals("mekatv") && !channel.equals("posavinatv")
+				&& !channel.equals("izvornatv") && !channel.equals("otvvalentino") && !channel.equals("rtsdrama")
+				&& !channel.equals("belleamie") && !channel.equals("kanal3") && !channel.equals("comedy.bg")
+				&& !channel.equals("moviestar.bg") && !channel.equals("action.bg") && !channel.equals("karusel")
+				&& !channel.equals("outdoor") && !channel.equals("luxe") && !channel.equals("worldfashion")
+				&& !channel.equals("dugatv") && !channel.equals("valentinomusic") && !channel.equals("classica")
+				&& !channel.equals("tracesportstars") && !channel.equals("valentinoetno")
+				&& !channel.equals("mezzolive") && !channel.equals("motorsporttv") && !channel.equals("srce")
+				&& !channel.equals("pinkhits1") && !channel.equals("pinkhits2") && !channel.equals("pinkmusic2")
+				&& !channel.equals("rtshd") && !channel.equals("popoto") && !channel.equals("popbrio")
+				&& !channel.equals("popkino") && !channel.equals("nettv") && !channel.equals("planet")
+				&& !channel.equals("golica") && !channel.equals("koper") && !channel.equals("sk1.slo")
+				&& !channel.equals("sk2.slo") && !channel.equals("sk3.slo") && !channel.equals("sk4.slo")
+				&& !channel.equals("rtsmaribor") && !channel.equals("edgesport") && !channel.equals("motorvision")
+				&& !channel.equals("rtszivot") && !channel.equals("rtstrezor") && !channel.equals("rtvnis")
+				&& !channel.equals("intv") && !channel.equals("rtvvisoko") && !channel.equals("nasatv.ba")
+				&& !channel.equals("osmtv") && !channel.equals("kanal6") && !channel.equals("mrt1")
+				&& !channel.equals("mrt2") && !channel.equals("sobranskikanal") && !channel.equals("telma")
+				&& !channel.equals("24vesti") && !channel.equals("sitel") && !channel.equals("kanal5")
+				&& !channel.equals("kanal5plus") && !channel.equals("alfatv.mk") && !channel.equals("tvnova.mk")
+				&& !channel.equals("nasatv.mk") && !channel.equals("mtm") && !channel.equals("tera")
+				&& !channel.equals("orbis") && !channel.equals("sonce") && !channel.equals("tvvizija.mk")
+				&& !channel.equals("edo") && !channel.equals("alsatm") && !channel.equals("hearttv")
+				&& !channel.equals("retrotv") && !channel.equals("nrjhits") && !channel.equals("sevdahtv")
+				&& !channel.equals("novaworld") && !channel.equals("rtlworld") && !channel.equals("orfsportplus")
+				&& !channel.equals("chelseatv") && !channel.equals("sevillatv") && !channel.equals("insajdertv")
+				&& !channel.equals("rtvbpk") && !channel.equals("ntvjasmin") && !channel.equals("k3prnjavor")
+				&& !channel.equals("smarttvbih") && !channel.equals("a1bih") && !channel.equals("rtskolo")
+				&& !channel.equals("rtsmuzika") && !channel.equals("novosadskatv") && !channel.equals("loteltv")
+				&& !channel.equals("eurochannel") && !channel.equals("tvmost") && !channel.equals("rtvsabac")
+				&& !channel.equals("tvvujic") && !channel.equals("rastv") && !channel.equals("tvkiss.mk")
+				&& !channel.equals("tviris.mk") && !channel.equals("nova24.slo") && !channel.equals("vaskanal")
+				&& !channel.equals("m1gold") && !channel.equals("cbsdrama") && !channel.equals("rtdocumentary")
+				&& !channel.equals("espn") && !channel.equals("espn2") && !channel.equals("btsport1")
+				&& !channel.equals("btsport2") && !channel.equals("boxnation") && !channel.equals("wwe")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
@@ -554,30 +587,42 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("jukebox.de")
 
 				// not empty
-				&& !channel.equals("oyocinema") && !channel.equals("oyofamily") && !channel.equals("zdravatv")
+				// && !channel.equals("oyocinema") && !channel.equals("oyofamily") &&
+				// !channel.equals("zdravatv")
 				&& !channel.equals("cinestartv.rs") && !channel.equals("cinestaraction.rs")
 				&& !channel.equals("cinestarpremiere1.rs") && !channel.equals("cinestarpremiere2.rs")
 				&& !channel.equals("cinestarfantasy.rs") && !channel.equals("cinestarcomedy.rs")
 
-				&& !channel.equals("24kitchen") && !channel.equals("foodnetwork") && !channel.equals("docubox")
-				&& !channel.equals("natgeors") && !channel.equals("davinci") && !channel.equals("fashion")
+				// && !channel.equals("24kitchen") && !channel.equals("foodnetwork") &&
+				// !channel.equals("docubox")
+				&& !channel.equals("natgeors")
+				// && !channel.equals("davinci") && !channel.equals("fashion")
 
-				&& !channel.equals("balkanika") && !channel.equals("davinci") && !channel.equals("fashion")
-				&& !channel.equals("zapadtv") && !channel.equals("planetsport2") && !channel.equals("planetsport1")
+				// && !channel.equals("balkanika") && !channel.equals("davinci") &&
+				// !channel.equals("fashion")
+				// && !channel.equals("zapadtv") && !channel.equals("planetsport2") &&
+				// !channel.equals("planetsport1")
 
 				// not empty music channels
 
-				&& !channel.equals("mtvadria") && !channel.equals("mtvhits") && !channel.equals("mtvclassic")
-				&& !channel.equals("vh1") && !channel.equals("vh1classic") && !channel.equals("magictv")
-				&& !channel.equals("dmsat") && !channel.equals("mezzo") && !channel.equals("narodnatv")
-				&& !channel.equals("topsound") && !channel.equals("pinkextra") && !channel.equals("hitmix")
+				// && !channel.equals("mtvadria") && !channel.equals("mtvhits") &&
+				// !channel.equals("mtvclassic")
+				// && !channel.equals("vh1") && !channel.equals("vh1classic") &&
+				// !channel.equals("magictv")
+				// && !channel.equals("dmsat") && !channel.equals("mezzo") &&
+				// !channel.equals("narodnatv")
+				// && !channel.equals("topsound") && !channel.equals("pinkextra") &&
+				// !channel.equals("hitmix")
 
 				// children not empty
-				&& !channel.equals("nickelodeon.rs") && !channel.equals("pinksuper") && !channel.equals("minimax")
-				&& !channel.equals("pinkkids")
+				&& !channel.equals("nickelodeon.rs")
+				// && !channel.equals("pinksuper") && !channel.equals("minimax")&&
+				// !channel.equals("pinkkids")
 				// ostalo not empty
-				&& !channel.equals("n1") && !channel.equals("n1.ba") && !channel.equals("n1.rs")
-				&& !channel.equals("tv1") && !channel.equals("alternativna") && !channel.equals("a1balkan")
+				// && !channel.equals("n1") && !channel.equals("n1.ba") &&
+				// !channel.equals("n1.rs")
+				// && !channel.equals("tv1") && !channel.equals("alternativna") &&
+				// !channel.equals("a1balkan")
 				&& !channel.equals("prva.cg") && !channel.equals("prvamax") && !channel.equals("prvaworld")
 				&& !channel.equals("o2") && !channel.equals("kcn2") && !channel.equals("kcn3")
 				&& !channel.equals("vijesticg") && !channel.equals("777") && !channel.equals("pinkkuvar")
@@ -593,9 +638,10 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("abcnews") && !channel.equals("klankosova") && !channel.equals("bangbang")
 				&& !channel.equals("filmthriller") && !channel.equals("filmnje") && !channel.equals("filmaksion")
 				&& !channel.equals("filmdrame") && !channel.equals("filmdy") && !channel.equals("expshkence")
-				&& !channel.equals("expnatyra")
+				&& !channel.equals("expnatyra") && !channel.equals("tiankovmusic") && !channel.equals("moviestar.bg")
+				&& !channel.equals("film.bg")
 
-				&& !channel.equals("laudatotv") && !channel.equals("expshkence");
+				&& !channel.equals("tiankovmusic") && !channel.equals("moviestar.bg") && !channel.equals("film.bg");
 
 	}
 
