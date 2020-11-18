@@ -446,8 +446,21 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("palmaplus") && !channel.equals("srpskanaucna") && !channel.equals("soskanal")
 				&& !channel.equals("rtcgSat") && !channel.equals("pink3") && !channel.equals("pinkbravo")
 				&& !channel.equals("pinkkoncert") && !channel.equals("sporttv1") && !channel.equals("sporttv2")
+				&& !channel.equals("sporttv3") && !channel.equals("sk4.rs") && !channel.equals("sk5.rs")
+				&& !channel.equals("sk6.rs") && !channel.equals("sport1") && !channel.equals("skysportsmain")
+				&& !channel.equals("skysportsarena") && !channel.equals("skysportsfootball")
+				&& !channel.equals("skysport1") && !channel.equals("skysport2") && !channel.equals("skysportf1")
+				&& !channel.equals("fightchannelworld") && !channel.equals("movistarmotogp")
+				&& !channel.equals("vizionplus") && !channel.equals("rtsh") && !channel.equals("koha")
+				&& !channel.equals("era") && !channel.equals("klantv") && !channel.equals("tiptv")
+				&& !channel.equals("albmusic") && !channel.equals("filmhits1") && !channel.equals("filmkomedi")
+				&& !channel.equals("tringworld") && !channel.equals("tringsuper") && !channel.equals("tringlife")
+				&& !channel.equals("tringcomedy") && !channel.equals("tringmax") && !channel.equals("tringfantazi")
+				&& !channel.equals("tringplanet") && !channel.equals("tringshqip") && !channel.equals("tringtring")
+				&& !channel.equals("tringjolly") && !channel.equals("tring3plus") && !channel.equals("digigold1")
+				&& !channel.equals("vikom") && !channel.equals("tvkakanj")
 
-				&& !channel.equals("pinkkoncert") && !channel.equals("sporttv1") && !channel.equals("sporttv2")
+				&& !channel.equals("bdctv") && !channel.equals("vikom") && !channel.equals("tvkakanj")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
@@ -568,8 +581,21 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("prva.cg") && !channel.equals("prvamax") && !channel.equals("prvaworld")
 				&& !channel.equals("o2") && !channel.equals("kcn2") && !channel.equals("kcn3")
 				&& !channel.equals("vijesticg") && !channel.equals("777") && !channel.equals("pinkkuvar")
+				&& !channel.equals("hntv") && !channel.equals("arena1.rs") && !channel.equals("arena2.rs")
+				&& !channel.equals("arena3.rs") && !channel.equals("arena4.rs") && !channel.equals("arena5.rs")
+				&& !channel.equals("sk5") && !channel.equals("sk6") && !channel.equals("sk1.rs")
+				&& !channel.equals("sk2.rs") && !channel.equals("sk3.rs") && !channel.equals("skgolf")
+				&& !channel.equals("tdc") && !channel.equals("disneyjunior.hr") && !channel.equals("ringbg")
 
-				&& !channel.equals("hntv") && !channel.equals("777") && !channel.equals("pinkkuvar");
+				// albanian channels
+				&& !channel.equals("diemasport1") && !channel.equals("rtv21") && !channel.equals("21popullore")
+				&& !channel.equals("rtk") && !channel.equals("oranews") && !channel.equals("ktv")
+				&& !channel.equals("abcnews") && !channel.equals("klankosova") && !channel.equals("bangbang")
+				&& !channel.equals("filmthriller") && !channel.equals("filmnje") && !channel.equals("filmaksion")
+				&& !channel.equals("filmdrame") && !channel.equals("filmdy") && !channel.equals("expshkence")
+				&& !channel.equals("expnatyra")
+
+				&& !channel.equals("laudatotv") && !channel.equals("expshkence");
 
 	}
 
