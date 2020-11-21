@@ -535,6 +535,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("skysportf1.it") && !channel.equals("milantv.it") && !channel.equals("interts.it")
 				&& !channel.equals("romatv.it") && !channel.equals("juventustv.it") && !channel.equals("supertennis.it")
 				&& !channel.equals("sportitalia.it") && !channel.equals("raisport1.it")
+				&& !channel.equals("raiscuola.it")
+
 				&& !channel.equals("skysportnews") && !channel.equals("nova24") && !channel.equals("goldtv")
 
 				&& !channel.equals("hbo1.slo") && !channel.equals("hbo2.slo") && !channel.equals("hbo3.slo")
@@ -545,7 +547,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("davinci.slo") && !channel.equals("travel.slo") && !channel.equals("travel.slo")
 				&& !channel.equals("viasathis.slo") && !channel.equals("history.slo") && !channel.equals("natgeo.slo")
 				&& !channel.equals("natgeowild.slo") && !channel.equals("animalplanet.slo")
-				&& !channel.equals("ginx.slo")
+				&& !channel.equals("ginx.slo") && !channel.equals("slo1") && !channel.equals("slo2")
+				&& !channel.equals("slo3") && !channel.equals("poptv") && !channel.equals("akanal")
+				&& !channel.equals("tvmaribor.slo")
 
 				&& !channel.equals("liverpooltv") && !channel.equals("mutv") && !channel.equals("Italia 1")
 				&& !channel.equals("Italia 2") && !channel.equals("tgcom24.it")
@@ -585,7 +589,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("discoverychannel.de") && !channel.equals("historychannel.de")
 				&& !channel.equals("animalplanet.de") && !channel.equals("dmax.de") && !channel.equals("anixe.de")
 				&& !channel.equals("phoenix.de") && !channel.equals("mtvgermany.de") && !channel.equals("jukebox.de")
-				&& !channel.equals("jukebox.de")
+				&& !channel.equals("jukebox.de") && !channel.equals("viva.de") && !channel.equals("jukebox.de")
+				&& !channel.equals("blizz.de") && !channel.equals("zeeone.de") && !channel.equals("skycinema1.de")
+				&& !channel.equals("skyemotion.de") && !channel.equals("skywestern.de") && !channel.equals("skyarts.de")
+				&& !channel.equals("disneycinemagic.de") && !channel.equals("disneyxd.de")
+				&& !channel.equals("boomerang.de") && !channel.equals("anixeserie.de")
 
 				// not empty
 				&& !channel.equals("oyocinema") && !channel.equals("oyofamily") && !channel.equals("zdravatv")
@@ -635,7 +643,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("pinkscifi") && !channel.equals("diemasport2") && !channel.equals("hram")
 
 				&& !channel.equals("hitbrcko") && !channel.equals("tvnovapula") && !channel.equals("jabukatv")
-				&& !channel.equals("topkanal");
+				&& !channel.equals("topkanal") && !channel.equals("discoveryturbo") && !channel.equals("nbatv")
+				&& !channel.equals("mtvbrandnew") && !channel.equals("france24");
 
 	}
 
