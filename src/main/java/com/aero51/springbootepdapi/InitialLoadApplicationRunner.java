@@ -494,7 +494,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("m1gold") && !channel.equals("cbsdrama") && !channel.equals("rtdocumentary")
 				&& !channel.equals("espn") && !channel.equals("espn2") && !channel.equals("btsport1")
 				&& !channel.equals("btsport2") && !channel.equals("boxnation") && !channel.equals("wwe")
-				&& !channel.equals("citytv")
+				&& !channel.equals("citytv") && !channel.equals("hram")
 
 				&& !channel.equals("sportdigital") && !channel.equals("skysportaustria") && !channel.equals("filmklub")
 				&& !channel.equals("filmklubextra") && !channel.equals("zenskatv") && !channel.equals("bundesliga1")
@@ -630,7 +630,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("expnatyra") && !channel.equals("tiankovmusic") && !channel.equals("moviestar.bg")
 				&& !channel.equals("film.bg")
 
-				&& !channel.equals("tiankovmusic") && !channel.equals("moviestar.bg") && !channel.equals("film.bg");
+				&& !channel.equals("tiankovmusic") && !channel.equals("moviestar.bg") && !channel.equals("film.bg")
+				&& !channel.equals("pink2") && !channel.equals("pinkpedia") && !channel.equals("pinkromance")
+				&& !channel.equals("pinkscifi") && !channel.equals("diemasport2") && !channel.equals("hram")
+
+				&& !channel.equals("hitbrcko") && !channel.equals("tvnovapula") && !channel.equals("jabukatv")
+				&& !channel.equals("topkanal");
 
 	}
 
