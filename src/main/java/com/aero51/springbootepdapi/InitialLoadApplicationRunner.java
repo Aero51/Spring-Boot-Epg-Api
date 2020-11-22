@@ -377,36 +377,33 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (programme.getCategory() != null) {
 					List<Category> categories = programme.getCategory();
 					List<String> content = new ArrayList<String>();
-					for (Category category : categories) {
-						content.add(category.getContent());
+					String category = "";
+					for (Category cat : categories) {
+						// content.add(category.getContent());
+						category = category + cat.getContent() + " ";
 					}
+					outputProgram.setCategory(category);
 
-					Map<String, List<String>> map = new HashMap<>();
-					map.put("Category", content);
-
-					ObjectMapper gson = new ObjectMapper();
-					try {
-						String json = gson.writeValueAsString(map);
-						outputProgram.setCategory(json);
-					} catch (JsonProcessingException e) {
-						System.out.println("Category converting to json error! ");
-						e.printStackTrace();
-					}
-
-				} else {
-					Map<String, List<String>> map = new HashMap<>();
-					ArrayList<String> cat = new ArrayList<>();
-					cat.add("Bez kategorije");
-					map.put("Category", cat);
-					ObjectMapper gson = new ObjectMapper();
-					try {
-						String json = gson.writeValueAsString(map);
-						outputProgram.setCategory(json);
-					} catch (JsonProcessingException e) {
-						System.out.println("Category Bez kategorije converting to json error! ");
-						e.printStackTrace();
-					}
-
+					/*
+					 * Map<String, List<String>> map = new HashMap<>(); map.put("Category",
+					 * content);
+					 * 
+					 * ObjectMapper gson = new ObjectMapper(); try { String json =
+					 * gson.writeValueAsString(map); outputProgram.setCategory(json); } catch
+					 * (JsonProcessingException e) {
+					 * System.out.println("Category converting to json error! ");
+					 * e.printStackTrace(); }
+					 */
+				} else {/*
+						 * Map<String, List<String>> map = new HashMap<>(); ArrayList<String> cat = new
+						 * ArrayList<>(); cat.add("Bez kategorije"); map.put("Category", cat);
+						 * ObjectMapper gson = new ObjectMapper(); try { String json =
+						 * gson.writeValueAsString(map); outputProgram.setCategory(json); } catch
+						 * (JsonProcessingException e) {
+						 * System.out.println("Category Bez kategorije converting to json error! ");
+						 * e.printStackTrace(); }
+						 */
+					outputProgram.setCategory("");
 				}
 
 				outputProgramList.add(outputProgram);
