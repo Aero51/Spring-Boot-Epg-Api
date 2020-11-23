@@ -2,7 +2,10 @@ package com.aero51.springbootepdapi;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -315,6 +318,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	private void processProgrammes(List<Programme> programmeList) {
 		System.out.println("number of programs before process: " + programmeList.size());
 		List<OutputProgram> outputProgramList = new ArrayList<OutputProgram>();
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyyMMddHHmmSS");
 		for (Programme programme : programmeList) {
 			String channel = programme.getChannel();
 			if (isExcluded(channel)) {
@@ -406,6 +410,21 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					outputProgram.setCategory("");
 				}
 
+				Date startDate = null;
+				Date stopDate = null;
+				Date currentDate = null;
+				try {
+					startDate = fromUser.parse(programme.getStart());
+					stopDate = fromUser.parse(programme.getStop());
+
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				long startTime = startDate.getTime();
+				long stopTime = stopDate.getTime();
+				long diff = stopTime - startTime;
+				long diffMinutes = diff / (60 * 1000) % 60;
+				outputProgram.setProgramDuration((int) diffMinutes);
 				outputProgramList.add(outputProgram);
 			}
 		}
