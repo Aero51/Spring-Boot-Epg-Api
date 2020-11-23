@@ -423,7 +423,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				long startTime = startDate.getTime();
 				long stopTime = stopDate.getTime();
 				long diff = stopTime - startTime;
-				long diffMinutes = diff / (60 * 1000) % 60;
+				long diffMinutes = diff / (60 * 1000);
 				outputProgram.setProgramDuration((int) diffMinutes);
 				outputProgramList.add(outputProgram);
 			}
