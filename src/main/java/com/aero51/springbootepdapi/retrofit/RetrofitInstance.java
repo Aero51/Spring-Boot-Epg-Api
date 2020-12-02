@@ -1,8 +1,6 @@
 package com.aero51.springbootepdapi.retrofit;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -22,20 +20,15 @@ public class RetrofitInstance {
 	private static final String PUB_PROXY_URL = "http://pubproxy.com/api/";
 	private static final String GIMME_PROXY_URL = "http://gimmeproxy.com/api/";
 
-	public static synchronized RetrofitApi getEpdApi(String proxyHost, int proxyPort) {
+	public static synchronized RetrofitApi getEpdApi() {
 		if (epdRetrofit == null) {
 
 			HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 			loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
-			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
-
-			// addInterceptor(REWRITE_CONTENT_LENGTH_INTERCEPTOR)
-			// .proxy(proxy)
-
 			OkHttpClient okHttpClient = new OkHttpClient.Builder().followRedirects(true).followSslRedirects(true)
-					.connectTimeout(20, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS)
-					.callTimeout(50, TimeUnit.SECONDS).retryOnConnectionFailure(false)
+					.connectTimeout(30, TimeUnit.SECONDS).readTimeout(40, TimeUnit.SECONDS)
+					.callTimeout(60, TimeUnit.SECONDS).retryOnConnectionFailure(false)
 
 					.addInterceptor(loggingInterceptor)
 

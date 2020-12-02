@@ -19,15 +19,12 @@ import com.aero51.springbootepdapi.db.GimmeProxyDataRepository;
 import com.aero51.springbootepdapi.db.OutputChannelListRepository;
 import com.aero51.springbootepdapi.db.ProgramRepository;
 import com.aero51.springbootepdapi.db.PubProxyDataRepository;
-import com.aero51.springbootepdapi.model.gimmeproxy.GimmeProxyResponseModel;
 import com.aero51.springbootepdapi.model.input.Category;
 import com.aero51.springbootepdapi.model.input.Channel;
 import com.aero51.springbootepdapi.model.input.Programme;
 import com.aero51.springbootepdapi.model.input.Tv;
 import com.aero51.springbootepdapi.model.output.OutputChannel;
 import com.aero51.springbootepdapi.model.output.OutputProgram;
-import com.aero51.springbootepdapi.model.pubproxy.Data;
-import com.aero51.springbootepdapi.model.pubproxy.PubProxyResponseModel;
 import com.aero51.springbootepdapi.retrofit.RetrofitApi;
 import com.aero51.springbootepdapi.retrofit.RetrofitInstance;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -69,30 +66,9 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	}
 
 	private void initiateEpgDownload() {
-		String proxyHost = "191.37.49.226";
-		Integer proxyPort = 3128;
 
-		// fetchNewGimmeProxy();
-		if (pubProxyFailcount < 11) {
-			List<Data> dataList = new ArrayList<Data>();
-			pubProxyRepo.findAll().forEach(dataList::add);
-			if (dataList.size() > 0) {
-				Data data = dataList.get(0);
-				proxyHost = data.getIp();
-				proxyPort = data.getPort();
-			}
-		} else {
-			List<GimmeProxyResponseModel> gimmeProxyList = new ArrayList<GimmeProxyResponseModel>();
-			gimmeProxyRepo.findAll().forEach(gimmeProxyList::add);
-			if (gimmeProxyList.size() > 0) {
-				GimmeProxyResponseModel gimmeProxyResponseModel = gimmeProxyList.get(0);
-				proxyHost = gimmeProxyResponseModel.getIp();
-				proxyPort = gimmeProxyResponseModel.getPort();
-			}
-
-		}
-		System.out.println("initiateEpgDownload proxyHost : " + proxyHost + " ,proxyPort: " + proxyPort);
-		RetrofitApi epdRetrofitApi = RetrofitInstance.getEpdApi(proxyHost, proxyPort);
+		System.out.println("initiateEpgDownload ");
+		RetrofitApi epdRetrofitApi = RetrofitInstance.getEpdApi();
 		Call<Tv> call = epdRetrofitApi.getEpg();
 
 		call.enqueue(new Callback<Tv>() {
@@ -108,10 +84,10 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					if (pubProxyFailcount < 11) {
-						fetchNewPubProxy();
+					if (epgFailcount < 11) {
+						initiateEpgDownload();
 					} else {
-						fetchNewGimmeProxy();
+
 					}
 
 				} else {
@@ -141,126 +117,13 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					e.printStackTrace();
 				}
 				// if (epgFailcount < 5) {
-				if (pubProxyFailcount < 11) {
-					fetchNewPubProxy();
-				} else {
-					fetchNewGimmeProxy();
+				if (epgFailcount < 11) {
+					initiateEpgDownload();
 				}
 				// }
 			}
 		});
 
-	}
-
-	private void fetchNewPubProxy() {
-		RetrofitApi pubProxyRetrofitApi = RetrofitInstance.getPubProxyApi();
-		Call<PubProxyResponseModel> call = pubProxyRetrofitApi.getPubProxy();
-		call.enqueue(new Callback<PubProxyResponseModel>() {
-
-			@Override
-			public void onResponse(Call<PubProxyResponseModel> call, Response<PubProxyResponseModel> response) {
-				if (!response.isSuccessful()) {
-					System.out.println("PubProxy  Response not ok: " + response.code() + " ,message:"
-							+ response.message() + " ,pubProxyFailcount: " + pubProxyFailcount);
-					pubProxyFailcount = pubProxyFailcount + 1;
-					if (pubProxyFailcount < 11) {
-						try {
-							Thread.sleep(1000);
-							fetchNewPubProxy();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					} else {
-						fetchNewGimmeProxy();
-					}
-				} else {
-					System.out.println(
-							"PubProxy Response ok: " + response.code() + " ,size :" + response.body().getData().size());
-					pubProxyRepo.deleteAll();
-					Data data = response.body().getData().get(0);
-					pubProxyRepo.save(data);
-					initiateEpgDownload();
-					pubProxyFailcount = pubProxyFailcount + 1;
-				}
-
-			}
-
-			@Override
-			public void onFailure(Call<PubProxyResponseModel> call, Throwable t) {
-				// TODO Auto-generated method stub
-				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
-				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
-				pubProxyFailcount = pubProxyFailcount + 1;
-				if (pubProxyFailcount < 11) {
-					try {
-						Thread.sleep(1000);
-						fetchNewPubProxy();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-			}
-		});
-	}
-
-	private void fetchNewGimmeProxy() {
-		RetrofitApi gimmeProxyRetrofitApi = RetrofitInstance.getGimmeProxyApi();
-		Call<GimmeProxyResponseModel> call = gimmeProxyRetrofitApi.getGimmeProxy();
-		call.enqueue(new Callback<GimmeProxyResponseModel>() {
-
-			@Override
-			public void onResponse(Call<GimmeProxyResponseModel> call, Response<GimmeProxyResponseModel> response) {
-				if (!response.isSuccessful()) {
-					System.out.println("GimmeProxy  Response not ok: " + response.code() + " ,message:"
-							+ response.message() + " ,gimmeProxyFailcount: " + gimmeProxyFailcount);
-					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					if (gimmeProxyFailcount < 11) {
-						try {
-							Thread.sleep(1000);
-							fetchNewGimmeProxy();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					}
-				} else {
-					System.out.println("GimmeProxy Response ok: " + response.code() + " ,ip: " + response.body().getIp()
-							+ " ,protocol: " + response.body().getProtocol());
-					// pubProxyRepo.deleteAll();
-					// Data data = response.body().getData().get(0);
-					// pubProxyRepo.save(data);
-					// initiateEpgDownload();
-					gimmeProxyFailcount = gimmeProxyFailcount + 1;
-					gimmeProxyRepo.deleteAll();
-					gimmeProxyRepo.save(response.body());
-					initiateEpgDownload();
-
-				}
-
-			}
-
-			@Override
-			public void onFailure(Call<GimmeProxyResponseModel> call, Throwable t) {
-				// TODO Auto-generated method stub
-				System.out.println("PubProxy onFailure Throwable: " + t.getMessage());
-				System.out.println("PubProxy stack trace: " + t.getStackTrace().toString());
-				gimmeProxyFailcount = gimmeProxyFailcount + 1;
-				if (gimmeProxyFailcount < 11) {
-					try {
-						Thread.sleep(1000);
-						fetchNewGimmeProxy();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-			}
-		});
 	}
 
 	private void saveTodb(Response<Tv> response) {
@@ -294,25 +157,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		List<OutputChannel> sortedOutputChannelList = new ArrayList<OutputChannel>();
 		channelsRepo.saveAll(unsortedChannelList);
 
-		/*
-		 * for (int i = 0; i < croChannelList.size(); i++) {
-		 * 
-		 * sortedOutputChannelList.add(channelsRepo.findByName(croChannelList.get(i)).
-		 * get(0)); }
-		 * 
-		 * channelsRepo.deleteAll(); for (OutputChannel outputChannel :
-		 * unsortedChannelList) { if (isSortedExcluded(outputChannel.getName())) {
-		 * sortedOutputChannelList.add(outputChannel); }
-		 * 
-		 * } channelsRepo.saveAll(sortedOutputChannelList);
-		 * 
-		 */
-
 		System.out.println("number of channels after process unsorted: " + unsortedChannelList.size());
-		// System.out.println("number of channels after process sorted: " +
-		// sortedOutputChannelList.size());
-		// System.out.println("number of channels after process: " +
-		// unsortedChannelList.size());
+
 	}
 
 	private void processProgrammes(List<Programme> programmeList) {
