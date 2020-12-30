@@ -53,15 +53,11 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 	private Integer pubProxyFailcount = 0;
 	private Integer gimmeProxyFailcount = 0;
 	private Integer epgFailcount = 0;
-	private List<String> croChannelList = createCroChannelsList();
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		// TODO Auto-generated method stub
 		System.out.println("InitialLoad");
-		// Thread.sleep(5000);
 		initiateEpgDownload();
-
 		System.out.println("InitialLoad complete");
 	}
 
@@ -87,7 +83,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					if (epgFailcount < 11) {
 						initiateEpgDownload();
 					} else {
-
 					}
 
 				} else {
@@ -120,7 +115,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				if (epgFailcount < 11) {
 					initiateEpgDownload();
 				}
-				// }
 			}
 		});
 
@@ -226,7 +220,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				if (programme.getCategory() != null) {
 					List<Category> categories = programme.getCategory();
-					List<String> content = new ArrayList<String>();
 					String category = "";
 					for (Category cat : categories) {
 						// content.add(category.getContent());
@@ -287,7 +280,6 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		return !channel.equals("hrt5") && !channel.equals("pinkextra") && !channel.equals("ducktv")
 				&& !channel.equals("ginx")
 				// empty
-
 				&& !channel.equals("dtx") && !channel.equals("discoveryshow") && !channel.equals("ccextra")
 				&& !channel.equals("idinvestigation") && !channel.equals("idxtra") && !channel.equals("bbcearth")
 				&& !channel.equals("banovina") && !channel.equals("skysportaustria") && !channel.equals("mtvdance")
@@ -511,118 +503,4 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 	}
 
-	private boolean isExcludedOld(String channel) {
-		// 193 channels
-		return !channel.equals("ALJAZEERA") && !channel.equals("24KITCHEN") && !channel.equals("KITCHENTV")
-				&& !channel.equals("EENTERTAINMENT") && !channel.equals("ARENASPORT1") && !channel.equals("ARENASPORT2")
-				&& !channel.equals("ARENASPORT3") && !channel.equals("ARENASPORT4") && !channel.equals("ARENASPORT5")
-				&& !channel.equals("ARENASPORT1BH") && !channel.equals("NOVASPORT") && !channel.equals("SSMAINEVENT")
-				&& !channel.equals("SSPORTSFOOTBALL") && !channel.equals("SSPORTSPREMIERLEAGUE")
-				&& !channel.equals("SSPORTSACTION") && !channel.equals("SSPORTSARENA") && !channel.equals("SKYSPORTSF1")
-				&& !channel.equals("SKYSPORTSMIX") && !channel.equals("SKYSPORTSCRICKET") && !channel.equals("SSGOLF")
-				&& !channel.equals("BTSPORT3") && !channel.equals("ESPNUK") && !channel.equals("VARAZDINSKATV")
-				&& !channel.equals("RTBTV") && !channel.equals("O2TV") && !channel.equals("PRVASRPSKATELEVIZIJA")
-				&& !channel.equals("HAPPYTV") && !channel.equals("TVCGSAT") && !channel.equals("ATV")
-				&& !channel.equals("FACETV") && !channel.equals("NOVABH") && !channel.equals("TVALFASARAJEVO")
-				&& !channel.equals("PINK") && !channel.equals("PINKSCIFIANDFANTASY")
-				&& !channel.equals("PINKCRIMEANDMYSTERY") && !channel.equals("PINKWORLDCINEMA")
-				&& !channel.equals("PINKLOL") && !channel.equals("HBOCOMEDY") && !channel.equals("FILMBOX")
-				&& !channel.equals("UNIVERSALCHANNEL") && !channel.equals("SCIFICHANNEL")
-				&& !channel.equals("DISCOVERYCHANNEL") && !channel.equals("DISCOVERYSCIENCE")
-				&& !channel.equals("HISTORYCHANNEL") && !channel.equals("VIASATEXPLORE")
-				&& !channel.equals("VIASATHISTORY") && !channel.equals("VIASATNATURE")
-				&& !channel.equals("TRAVELCHANNEL") && !channel.equals("INVESTIGATIONDISCOVERY")
-				&& !channel.equals("DAVINCILEARNING") && !channel.equals("COMEDYCENTRALEXTRA")
-				&& !channel.equals("PINKFOLK") && !channel.equals("GRANDNARODNATV") && !channel.equals("PINKSUPERKIDS")
-				&& !channel.equals("DISNEYCHANNEL") && !channel.equals("BOSNATV1") && !channel.equals("BOXNATION")
-				&& !channel.equals("BTSPORT1") && !channel.equals("BTSPORT2") && !channel.equals("A1BIH")
-				&& !channel.equals("ALFATV") && !channel.equals("ARENASPORT6") && !channel.equals("AURORATV")
-				&& !channel.equals("AUTOMOTOTVIT") && !channel.equals("BABYTV") && !channel.equals("BANOVINA")
-				&& !channel.equals("BBCEARTH") && !channel.equals("BDCTV") && !channel.equals("BELLEAMIE")
-				&& !channel.equals("BNMUSIC") && !channel.equals("CCEXTRA") && !channel.equals("CITYTV")
-				&& !channel.equals("DELUXEMUSIC") && !channel.equals("DISCOVERYSCI") && !channel.equals("DISCOVERYSHOW")
-				&& !channel.equals("DOCUBOX") && !channel.equals("DOKUTV") && !channel.equals("DTX")
-				&& !channel.equals("DTXDISCOVERY") && !channel.equals("DUGATV") && !channel.equals("ELTA")
-				&& !channel.equals("ESPN") && !channel.equals("ESPN2") && !channel.equals("EUROCHANNEL")
-				&& !channel.equals("FACE") && !channel.equals("FIGHTBOX") && !channel.equals("FIGHTCHANNELWORLD")
-				&& !channel.equals("FILMKLUB") && !channel.equals("FILMKLUBEXTRA") && !channel.equals("HAYATFOLK")
-				&& !channel.equals("HAYATMUSIC") && !channel.equals("HAYATOVCI") && !channel.equals("HAYATPLUS")
-				&& !channel.equals("HBO") && !channel.equals("HITBRCKO") && !channel.equals("HRAM")
-				&& !channel.equals("HRT5") && !channel.equals("IDINVESTIGATION") && !channel.equals("IDXTRA")
-				&& !channel.equals("INTV") && !channel.equals("IZVORNATV") && !channel.equals("JIMJAM")
-				&& !channel.equals("K3PRNJAVOR") && !channel.equals("KANAL3") && !channel.equals("KANAL6")
-				&& !channel.equals("LOTELTV") && !channel.equals("LUXE") && !channel.equals("M1GOLD")
-				&& !channel.equals("MEKATV") && !channel.equals("MEZZOLIVE") && !channel.equals("MOTORVISION")
-				&& !channel.equals("MTVDANCE") && !channel.equals("MTVIGMAN") && !channel.equals("NASATVBA")
-				&& !channel.equals("NATIONALGEOGRAPHIC") && !channel.equals("NOVA24SLO") && !channel.equals("NOVAWORLD")
-				&& !channel.equals("NOVIPAZAR") && !channel.equals("NOVOSADSKATV") && !channel.equals("NTV101")
-				&& !channel.equals("NTVJASMIN") && !channel.equals("ORBIS") && !channel.equals("ORFSPORTPLUS")
-				&& !channel.equals("ORLANDO") && !channel.equals("OSMTV") && !channel.equals("OTVVALENTINO")
-				&& !channel.equals("OUTDOOR") && !channel.equals("PICKBOX") && !channel.equals("PINKFOLK1")
-				&& !channel.equals("PINKFOLK2") && !channel.equals("PINKKONCERT") && !channel.equals("PLANETSPORT3")
-				&& !channel.equals("PLANETSPORT4") && !channel.equals("PLANETSPORT5") && !channel.equals("POSAVINATV")
-				&& !channel.equals("RASTV") && !channel.equals("RTDOCUMENTARY") && !channel.equals("RTLWORLD")
-				&& !channel.equals("RTRSPLUS") && !channel.equals("RTS3") && !channel.equals("RTSDRAMA")
-				&& !channel.equals("RTSKOLO") && !channel.equals("RTSMUZIKA") && !channel.equals("RTSTREZOR")
-				&& !channel.equals("RTSZIVOT") && !channel.equals("RTVBPK") && !channel.equals("RTVKISS")
-				&& !channel.equals("RTVNIS") && !channel.equals("RTVSABAC") && !channel.equals("RTVVISOKO")
-				&& !channel.equals("RTVZENICA") && !channel.equals("SEVDAHTV") && !channel.equals("SK4RS")
-				&& !channel.equals("SK5") && !channel.equals("SK5RS") && !channel.equals("SK6")
-				&& !channel.equals("SK6RS") && !channel.equals("SKYSPORT1") && !channel.equals("SKYSPORT2")
-				&& !channel.equals("SKYSPORTF1") && !channel.equals("SKYSPORTSARENA")
-				&& !channel.equals("SKYSPORTSFOOTBALL") && !channel.equals("SKYSPORTSMAIN") && !channel.equals("SLON")
-				&& !channel.equals("SMARTTVBIH") && !channel.equals("SPORTKLUB") && !channel.equals("SPORTKLUB10")
-				&& !channel.equals("SPORTKLUB4") && !channel.equals("SPORTKLUB5") && !channel.equals("SPORTKLUB6")
-				&& !channel.equals("SPORTKLUB7") && !channel.equals("SPORTKLUB8") && !channel.equals("SPORTKLUB9")
-				&& !channel.equals("SPORTTV1") && !channel.equals("SPORTTV2") && !channel.equals("SPORTTV3")
-				&& !channel.equals("SRCE") && !channel.equals("TELEVIZIJA5") && !channel.equals("TOPTV")
-				&& !channel.equals("TVIRISMK") && !channel.equals("TVKAKANJ") && !channel.equals("TVKISSMK")
-				&& !channel.equals("TVMOST") && !channel.equals("TVSARAJEVO") && !channel.equals("TVVUJIC")
-				&& !channel.equals("USK") && !channel.equals("VALENTINOETNO") && !channel.equals("VALENTINOMUSIC")
-				&& !channel.equals("VASKANAL") && !channel.equals("VIKOM") && !channel.equals("ZENSKATV")
-				&& !channel.equals("PINK3") && !channel.equals("PRVAPLUS") && !channel.equals("DISCOVERYWORLDIT")
-				&& !channel.equals("STARTVTR") && !channel.equals("PINKHITS1") && !channel.equals("BLOOMBERG");
-
-		// A1BIH,BOSNATV1,BOXNATION,BTSPORT1,BTSPORT2 uopce nema programa
-		// ALJAZEERA, KITCHENTV,EENTERTAINMENT,ARENASPORT1,ARENASPORT2,ARENASPORT3 imaju
-		// programe stare 20 dana 24KITCHEN
-		// ARENASPORT1,ARENASPORT2,ARENASPORT3,ARENASPORT4,ARENASPORT5,ARENASPORT1BH,NOVASPORT,
-		// SSMAINEVENT,SSPORTSFOOTBALL,SSPORTSPREMIERLEAGUE,SSPORTSACTION,SSPORTSARENA,SKYSPORTSF1
-		// SKYSPORTSMIX,SKYSPORTSCRICKET,SSGOLF,BTSPORT3,ESPNUK,VARAZDINSKATV,RTBTV,O2TV,
-		// PRVASRPSKATELEVIZIJA,HAPPYTV,TVCGSAT,ATV,FACETV,NOVABH,TVALFASARAJEVO
-		// PINK,PINKSCIFIANDFANTASY,PINKCRIMEANDMYSTERY,PINKWORLDCINEMA,PINKLOL,HBOCOMEDY
-		// FILMBOX,UNIVERSALCHANNEL,SCIFICHANNEL,DISCOVERYCHANNEL,DISCOVERYSCIENCE,HISTORYCHANNEL,
-		// VIASATEXPLORE,VIASATHISTORY,VIASATNATURE,TRAVELCHANNEL,INVESTIGATIONDISCOVERY,
-		// DAVINCILEARNING,COMEDYCENTRALEXTRA,PINKFOLK,GRANDNARODNATV,PINKSUPERKIDS,DISNEYCHANNEL
-		// stari 20 dana
-	}
-
-	private boolean isSortedExcluded(String channel) {
-		// 55 channels
-		return !channel.equals("HRT1") && !channel.equals("HRT2") && !channel.equals("HRT3")
-				&& !channel.equals("NOVATV") && !channel.equals("RTLTELEVIZIJA") && !channel.equals("RTL2")
-				&& !channel.equals("DOMATV") && !channel.equals("RTLKOCKICA") && !channel.equals("HRT4");
-
-	}
-
-	private List<String> createCroChannelsList() {
-		List<String> croChannels = new ArrayList<String>();
-		croChannels.add("HRT1");
-		croChannels.add("HRT2");
-		croChannels.add("HRT3");
-		croChannels.add("HRT4");
-		croChannels.add("NOVATV");
-		croChannels.add("RTLTELEVIZIJA");
-		croChannels.add("RTL2");
-		croChannels.add("RTLKOCKICA");
-		croChannels.add("DOMATV");
-		return croChannels;
-	}
-
 }
-/*
- * </programme><programme start="20200605080000 +0200"
- * stop="20200605090000 +0200" channel="FACETV"> <title lang="hr">Muzicki
- * program</title> <desc lang="hr"> Category: Glazba. </desc> <desc lang="hr"/>
- * </programme>
- */
