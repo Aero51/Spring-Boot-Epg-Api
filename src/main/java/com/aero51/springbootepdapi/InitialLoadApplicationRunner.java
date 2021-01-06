@@ -301,6 +301,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("rtcgSat") && !channel.equals("pink3") && !channel.equals("pinkbravo")
 				&& !channel.equals("pinkkoncert") && !channel.equals("sporttv1") && !channel.equals("sporttv2")
 				&& !channel.equals("sporttv3") && !channel.equals("sk4.rs") && !channel.equals("sk5.rs")
+				&& !channel.equals("sk9.rs") && !channel.equals("sk8.rs") && !channel.equals("sk7.rs")
+
 				&& !channel.equals("sk6.rs") && !channel.equals("sport1") && !channel.equals("skysportsmain")
 				&& !channel.equals("skysportsarena") && !channel.equals("skysportsfootball")
 				&& !channel.equals("skysport1") && !channel.equals("skysport2") && !channel.equals("skysportf1")
