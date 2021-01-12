@@ -492,6 +492,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 				&& !channel.equals("sk5") && !channel.equals("sk6") && !channel.equals("sk1.rs")
 				&& !channel.equals("sk2.rs") && !channel.equals("sk3.rs") && !channel.equals("skgolf")
 				&& !channel.equals("tdc") && !channel.equals("disneyjunior.hr") && !channel.equals("ringbg")
+				&& !channel.equals("parovi1") && !channel.equals("zadruga1") && !channel.equals("zadruga2")
+				&& !channel.equals("zadruga3") && !channel.equals("zadruga4")
 
 				// albanian channels
 				&& !channel.equals("diemasport1") && !channel.equals("rtv21") && !channel.equals("21popullore")
@@ -508,7 +510,8 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				&& !channel.equals("hitbrcko") && !channel.equals("tvnovapula") && !channel.equals("jabukatv")
 				&& !channel.equals("topkanal") && !channel.equals("discoveryturbo") && !channel.equals("nbatv")
-				&& !channel.equals("mtvbrandnew") && !channel.equals("france24");
+				&& !channel.equals("mtvbrandnew") && !channel.equals("france24") && !channel.equals("france24.en")
+				&& !channel.equals("france24.fr");
 
 	}
 
