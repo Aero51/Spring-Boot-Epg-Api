@@ -22,6 +22,7 @@ import com.aero51.springbootepdapi.db.PubProxyDataRepository;
 import com.aero51.springbootepdapi.model.input.Category;
 import com.aero51.springbootepdapi.model.input.Channel;
 import com.aero51.springbootepdapi.model.input.Programme;
+import com.aero51.springbootepdapi.model.input.Title;
 import com.aero51.springbootepdapi.model.input.Tv;
 import com.aero51.springbootepdapi.model.output.OutputChannel;
 import com.aero51.springbootepdapi.model.output.OutputProgram;
@@ -168,12 +169,33 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 
 				String channel_display_name = channelsRepo.findByName(channel).get(0).getDisplay_name();
 				outputProgram.setChannel_display_name(channel_display_name);
-				String title = programme.getTitle().getContent();
-				if (title.matches(".*[(][?][)].*")) {
-					title = title.replace("(?)", "");
+
+				// String title = programme.getTitle().getContent();
+
+				List<Title> titleList = programme.getTitle();
+				List<String> titleStringList = new ArrayList<String>();
+				String title = "";
+				for (int i = 0; i < titleList.size(); i++) {
+					title = titleList.get(i).getContent();
+					if (title.matches(".*[(][?][)].*")) {
+						title = title.replace("(?)", "");
+					}
+					titleStringList.add(title);
 				}
 
-				outputProgram.setTitle(title);
+				Map<String, List<String>> map = new HashMap<>();
+				map.put("Titles", titleStringList);
+
+				ObjectMapper gson = new ObjectMapper();
+				try {
+					String json = gson.writeValueAsString(map);
+					outputProgram.setTitle(json);
+
+				} catch (JsonProcessingException e) {
+					System.out.println("Titles converting to json error! ");
+					e.printStackTrace();
+				}
+
 				outputProgram.setStart(programme.getStart());
 				outputProgram.setStop(programme.getStop());
 				if (programme.getSubTitle() != null) {

@@ -60,7 +60,7 @@ public class Programme {
 	@XmlTransient
 	private Integer db_id;
 	@XmlElement(required = true)
-	protected Title title;
+	protected List<Title> title;
 	@XmlElement(name = "sub-title")
 	protected SubTitle subTitle;
 	protected List<Desc> desc;
@@ -85,7 +85,7 @@ public class Programme {
 	 * @return possible object is {@link Title }
 	 * 
 	 */
-	public Title getTitle() {
+	public List<Title> getTitle() {
 		return title;
 	}
 
@@ -95,7 +95,7 @@ public class Programme {
 	 * @param value allowed object is {@link Title }
 	 * 
 	 */
-	public void setTitle(Title value) {
+	public void setTitle(List<Title> value) {
 		this.title = value;
 	}
 
