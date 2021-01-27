@@ -183,12 +183,12 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 					titleStringList.add(title);
 				}
 
-				Map<String, List<String>> map = new HashMap<>();
-				map.put("Titles", titleStringList);
+				Map<String, List<String>> titleMap = new HashMap<>();
+				titleMap.put("Titles", titleStringList);
 
-				ObjectMapper gson = new ObjectMapper();
+				ObjectMapper titleGson = new ObjectMapper();
 				try {
-					String json = gson.writeValueAsString(map);
+					String json = titleGson.writeValueAsString(titleMap);
 					outputProgram.setTitle(json);
 
 				} catch (JsonProcessingException e) {
