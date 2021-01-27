@@ -5,7 +5,6 @@
 // Generated on: 2020.06.24 at 11:07:57 PM CEST 
 //
 
-
 package com.aero51.springbootepdapi.model.input;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,32 +39,28 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "icon")
 public class Icon {
 
-    @XmlAttribute(name = "src", required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String src;
+	@XmlAttribute(name = "src", required = true)
+	@XmlSchemaType(name = "anyURI")
+	protected String src;
 
-    /**
-     * Gets the value of the src property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSrc() {
-        return src;
-    }
+	/**
+	 * Gets the value of the src property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSrc() {
+		return src;
+	}
 
-    /**
-     * Sets the value of the src property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSrc(String value) {
-        this.src = value;
-    }
+	/**
+	 * Sets the value of the src property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setSrc(String value) {
+		this.src = value;
+	}
 
 }
