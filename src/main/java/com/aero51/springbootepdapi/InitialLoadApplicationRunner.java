@@ -301,6 +301,7 @@ public class InitialLoadApplicationRunner implements ApplicationRunner {
 		// crtici: boomerang , cartoonnetwork, nickelodeon, nickjr, disney
 		return !channel.equals("hrt5") && !channel.equals("pinkextra") && !channel.equals("ducktv")
 				&& !channel.equals("ginx")
+
 				// empty
 				&& !channel.equals("dtx") && !channel.equals("discoveryshow") && !channel.equals("ccextra")
 				&& !channel.equals("idinvestigation") && !channel.equals("idxtra") && !channel.equals("bbcearth")
